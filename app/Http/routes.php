@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'Controller@showIndex');
+Route::get('login', 'Controller@getLogin');

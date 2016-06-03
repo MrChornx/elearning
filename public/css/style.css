@@ -16,8 +16,33 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: bpg;
+}
+
+button, .btn, h3, h2, h1, h4, .text-lg{
+    font-family: bpg_uppercase;
 }
 
 main {
     flex: 1 0 auto;
+}
+
+@font-face {
+    font-family: 'bpg';
+    src: url('../fonts/bpg_extrasquare_2009.eot');
+    src: url('../fonts/bpg_extrasquare_2009.eot') format('embedded-opentype'),
+    url('../fonts/bpg_extrasquare_2009.woff2') format('woff2'),
+    url('../fonts/bpg_extrasquare_2009.woff') format('woff'),
+    url('../fonts/bpg_extrasquare_2009.ttf') format('truetype'),
+    url('../fonts/bpg_extrasquare_2009.svg#bpg_extrasquare_2009') format('svg');
+}
+
+@font-face {
+    font-family: 'bpg_uppercase';
+    src: url('../fonts/bpg_extrasquare_mtavruli_2009.eot');
+    src: url('../fonts/bpg_extrasquare_mtavruli_2009.eot') format('embedded-opentype'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.woff2') format('woff2'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.woff') format('woff'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.ttf') format('truetype'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.svg#bpg_extrasquare_mtavruli_2009') format('svg');
 }

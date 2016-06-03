@@ -14,4 +14,8 @@ class Controller extends BaseController
     function showIndex(){
         return view('index');
     }
+
+    function getLogin(){
+        return view('login');
+    }
 }

@@ -7,7 +7,6 @@
 
     <title>@yield('title')</title>
 
-
     <link href="{{url('/')."/css/style.css"}}" rel="stylesheet" type="text/css">
     <link href="{{url('/')."/css/sweetalert.css"}}" rel="stylesheet" type="text/css">
     <link href="{{url('/')."/css/materialize.min.css"}}" rel="stylesheet" type="text/css">
@@ -16,7 +15,6 @@
     <script src="{{url('/')."/js/sweetalert.min.js"}}"></script>
     <script src="{{url('/')."/js/materialize.min.js"}}"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 
 
 </head>
