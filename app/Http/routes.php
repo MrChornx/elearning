@@ -13,3 +13,4 @@
 
 Route::get('/', 'Controller@showIndex');
 Route::get('login', 'Controller@getLogin');
+Route::get('admin/dashboard', 'AdminController@getDashboard');

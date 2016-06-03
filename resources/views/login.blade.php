@@ -38,7 +38,7 @@
                     <br/>
                     <span class="text-lg text-bold text-primary">საიტზე შესვლა</span>
                     <br/><br/>
-                    <form class="form floating-label" action="../../html/dashboards/dashboard.html" accept-charset="utf-8" method="post">
+                    <form class="form floating-label" action="{{url('admin/dashboard')}}" accept-charset="utf-8" method="get">
                         <div class="form-group">
                             <input type="text" class="form-control" id="username" name="username">
                             <label for="username">ნიკი</label>
