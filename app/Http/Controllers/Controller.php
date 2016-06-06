@@ -12,10 +12,22 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
     function showIndex(){
-        return view('index');
+        return view('main/index');
     }
 
     function getLogin(){
         return view('login');
+    }
+
+    function showDashboard() {
+    	return view('main/dashboard');
+    }
+
+    function showProfile() {
+    	return view('main/profile');
+    }
+
+    function showInstProfile() {
+		return view('main/inst-profile');
     }
 }
