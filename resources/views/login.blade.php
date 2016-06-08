@@ -25,7 +25,7 @@
                     <br/>
                     <form class="form floating-label" action="{{url('admin/dashboard')}}" accept-charset="utf-8" method="post">
                         <div class="form-group">
-                            <input autocomplete="off" value=" " type="text" class="form-control" id="username" name="username">
+                            <input autocomplete="off" value=" " type="text" class="form-control autocomplete-off" id="username" name="username">
                             <label for="username">ნიკი</label>
                         </div>
                         <div class="form-group">
@@ -62,6 +62,14 @@
     </div><!--end .card -->
 </section>
 <!-- END LOGIN SECTION -->
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function(){
+            $('.autocomplete-off').val('');
+        }, 15);
+    });
+</script>
 
 @stop
 
