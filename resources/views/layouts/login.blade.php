@@ -16,6 +16,7 @@
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/materialadmin.css?1425466319" />
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/font-awesome.min.css?1422529194" />
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/material-design-iconic-font.min.css?1421434286" />
+    <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-1.11.2.min.js"></script>
     <link href="{{url('/')."/css/style.css"}}" rel="stylesheet" type="text/css">
     <!-- END STYLESHEETS -->
 
@@ -32,7 +33,6 @@
 
 
 <!-- BEGIN JAVASCRIPT -->
-<script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-1.11.2.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/spin.js/spin.min.js"></script>

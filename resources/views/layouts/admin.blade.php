@@ -19,6 +19,7 @@
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/libs/rickshaw/rickshaw.css?1422792967" />
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/libs/morris/morris.core.css?1420463396" />
     <link href="{{url('/')."/css/style.css"}}" rel="stylesheet" type="text/css">
+    <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-1.11.2.min.js"></script>
     <!-- END STYLESHEETS -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -66,8 +67,16 @@
                     <a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
                         <img src="{{url('/')."/assets"}}/img/avatar1.jpg?1403934956" alt="" />
 								<span class="profile-info">
-									{{Session::get('user')->firstname}}
-									<small>Administrator</small>
+									{{Session::get('user')->firstname." ".Session::get('user')->lastname}}
+									<small>
+                                        @if(Session::get('user')->type==2)
+                                            ლექტორი
+                                        @elseif(Session::get('user')->type==1)
+                                            სტუდენტი
+                                        @elseif(Session::get('user')->type==3)
+                                            ადმინისტრატორი
+                                        @endif
+                                    </small>
 								</span>
                     </a>
                     <ul class="dropdown-menu animation-dock">
@@ -91,10 +100,80 @@
 </header>
 
 
-@yield('content')
+<div id="base">
+
+    <!-- BEGIN OFFCANVAS LEFT -->
+    <div class="offcanvas">
+    </div><!--end .offcanvas-->
+    <!-- END OFFCANVAS LEFT -->
+
+    <!-- BEGIN CONTENT-->
+    <div id="content">
+        <?php
+            $uri = $_SERVER['REQUEST_URI'];
+            $uri = explode("/",$uri);
+            $pattern =  $uri[count($uri)-1];
+        ?>
+        @yield('content')
+    </div><!--end #content-->
+    <!-- END CONTENT -->
+
+    <!-- BEGIN MENUBAR-->
+    <div id="menubar" class="menubar-inverse ">
+        <div class="menubar-fixed-panel">
+            <div>
+                <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+            <div class="expanded">
+                <a href="../../html/dashboards/dashboard.html">
+                    <span class="text-lg text-bold text-primary ">TSU&nbsp;ADMIN</span>
+                </a>
+            </div>
+        </div>
+        <div class="menubar-scroll-panel">
+
+            <ul id="main-menu" class="gui-controls">
+                <li>
+                    <a href="{{url("/admin/dashboard")}}" class="{{substr_count($pattern, 'dashboard')?"active":""}}">
+                        <div class="gui-icon"><i class="md md-home"></i></div>
+                        <span class="title">მთავარი</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{{url('admin/my-subjects')}}" class="{{substr_count($pattern, 'my-subjects')?"active":""}}">
+                        <div class="gui-icon"><i class="md md-web"></i></div>
+                        <span class="title">ჩემი საგნები</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{url('/admin/add-subject')}}" class="{{substr_count($pattern, 'add-subject')?"active":""}}">
+                        <div class="gui-icon"><i class="md md-web"></i></div>
+                        <span class="title">საგნის დამატება</span>
+                    </a>
+                </li>
+
+
+            </ul>
+
+            <div class="menubar-foot-panel">
+                <small class="no-linebreak hidden-folded">
+                    <span class="opacity-75">Copyright &copy; 2016</span> <strong>TSU</strong>
+                </small>
+            </div>
+        </div>
+
+
+    </div><!--end #base-->
+</div>
+<!-- END BASE -->
+
 
 <!-- BEGIN JAVASCRIPT -->
-<script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-1.11.2.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/spin.js/spin.min.js"></script>
@@ -120,8 +199,10 @@
 <script src="{{url('/')."/assets"}}/js/core/source/AppNavSearch.js"></script>
 <script src="{{url('/')."/assets"}}/js/core/source/AppVendor.js"></script>
 <script src="{{url('/')."/assets"}}/js/core/demo/Demo.js"></script>
-<script src="{{url('/')."/assets"}}/js/core/demo/DemoDashboard.js"></script>
-<!-- END JAVASCRIPT -->
+<script src="{{url('/')."/assets"}}/js/libs/select2/select2.min.js"></script>
+<script src="{{url('/')."/assets"}}/js/libs/multi-select/jquery.multi-select.js"></script>
+<script src="{{url('/')."/assets"}}/js/core/demo/DemoFormComponents.js"></script>
 
+<!-- END JAVASCRIPT -->
 </body>
 </html>

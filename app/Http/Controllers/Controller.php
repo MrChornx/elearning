@@ -153,10 +153,17 @@ class Controller extends BaseController
 
     function postLogin(){
         $users = User::all();
+        $username = Input::get('username');
         foreach($users as $user){
-            if($user->username == Input::get('username') && $user->password == md5(Input::get('password'))){
-                Session::set('user',$user);
-                return Redirect::to(url('admin/dashboard'));
+            if(trim($user->username) == trim($username)){
+                //echo "here";
+                if($user->password == md5(Input::get('password'))) {
+                    Session::set('user', $user);
+                    return Redirect::to(url('admin/dashboard'));
+                }
+            }
+            else{
+                echo $user->username."<br>".$username;
             }
         }
         return Redirect::to(url('login'))->with('msg-login-error','მონაცემები არასწორია');

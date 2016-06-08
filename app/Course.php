@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Course extends Authenticatable
 {
-    protected $table = "users";
+    protected $table = "courses";
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +17,7 @@ class User extends Authenticatable
     ];
 
     function subjects(){
-        return $this->belongsToMany('App\Subject','lecturers_subjects','user_id','subject_id')->withPivot('type');;
+        return $this->belongsToMany('App\Subject','subjects_courses','course_id','subject_id');
     }
 
 

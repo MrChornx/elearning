@@ -1,317 +1,127 @@
 @extends('layouts.admin')
 
-@section('title', 'სამართავი პანელი')
+@section('title', 'საგნის დამატება')
 
 @section('content')
-<!-- END HEADER-->
+    <link href="{{url('/')."/css/multi-select.css"}}" rel="stylesheet" type="text/css">
+    <style>
+        .ms-container{
+            width:550px;
+        }
+        td,th{
+            padding: 20px;
+        }
+        td a{
+            color: darkseagreen;
+        }
+        td a:hover{
+            text-decoration: none;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+    {{--<div style="padding: 30px; padding-bottom: 0;">--}}
+        {{--<div class="card">--}}
+            {{--<div class="card-head style-primary">--}}
+                {{--<header>ჩემი საგნები</header>--}}
+            {{--</div>--}}
+            {{--<div class="card-body floating-label">--}}
+                {{--<table cellpadding="20" border="black">--}}
+                    {{--<thead>--}}
+                    {{--<tr>--}}
+                        {{--<th>დასახელება</th>--}}
+                        {{--<th>ფაკულტეტი</th>--}}
+                        {{--<th>ლექტორები</th>--}}
+                        {{--<th></th>--}}
+                        {{--<th></th>--}}
+                    {{--</tr>--}}
+                    {{--</thead>--}}
+                    {{--<tbody>--}}
+                    {{--@foreach($subjects as $subject)--}}
+                        {{--<tr>--}}
+                            {{--<td>{{$subject->name}}</td>--}}
+                            {{--<td>--}}
+                                {{--@foreach($subject->courses as $course)--}}
+                                    {{--● {{$course->name}}<br>--}}
+                                {{--@endforeach--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                                {{--@foreach($subject->users as $lecturer)--}}
+                                    {{--● {{$lecturer->firstname." ".$lecturer->lastname}}<br>--}}
+                                {{--@endforeach--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                                {{--<a href="{{url('admin/edit-subject/'.$subject->id)}}">რედაქტირება</a>--}}
+                            {{--</td>--}}
+                            {{--<td>--}}
+                                {{--<a href="{{url('admin/add-theory/'.$subject->id)}}">მასალის დამატება</a>--}}
+                            {{--</td>--}}
+                        {{--</tr>--}}
+                    {{--@endforeach--}}
+                    {{--</tbody>--}}
+                {{--</table>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div style="padding: 30px">--}}
+        {{--<form class="form" method="post" action="{{url('/admin/add-subject')}}">--}}
+            {{--<div class="card">--}}
+                {{--<div class="card-head style-primary">--}}
+                    {{--<header>საგნის დამატება</header>--}}
+                {{--</div>--}}
+                {{--<div class="card-body floating-label">--}}
+                    {{--<div class="message-styled" style="width: 500px; margin: 0 auto; margin-top:10px; font-size: 20px; color: red">--}}
+                        {{--{{Session::get('msg')}}--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<input type="text" class="form-control autocomplete-off" id="subjName" name="name" value=" ">--}}
+                        {{--<label for="subjName">საგნის დასახელება</label>--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group">--}}
+                        {{--<div style="margin-top: 20px;">--}}
+                            {{--<select multiple="multiple" id="my-select" name="courses[]">--}}
+                                {{--@foreach($courses as $course)--}}
+                                    {{--<option value='{{$course->id}}'>{{$course->name}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                        {{--<label for="my-select"><h4>ფაკულტეტი</h4></label>--}}
+                    {{--</div>--}}
 
-<!-- BEGIN BASE-->
-<div id="base">
+                    {{--<div class="form-group">--}}
+                        {{--<div style="margin-top: 20px;">--}}
+                            {{--<select multiple="multiple" id="my-select-2" name="lecturers[]">--}}
+                                {{--@foreach($users as $lecturer)--}}
+                                    {{--<option value='{{$lecturer->id}}'>{{$lecturer->firstname." ".$lecturer->lastname}}</option>--}}
+                                {{--@endforeach--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                        {{--<label for="my-select"><h4>ლექტორები</h4></label>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-    <!-- BEGIN OFFCANVAS LEFT -->
-    <div class="offcanvas">
-    </div><!--end .offcanvas-->
-    <!-- END OFFCANVAS LEFT -->
+                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
-    <!-- BEGIN CONTENT-->
-    <div id="content">
+                {{--<div class="card-actionbar">--}}
+                    {{--<div class="card-actionbar-row">--}}
+                        {{--<button type="submit" class="btn btn-flat btn-primary ink-reaction">დამატება</button>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-    </div><!--end #content-->
-    <!-- END CONTENT -->
+            {{--</div>--}}
+        {{--</form>--}}
+    {{--</div>--}}
 
-    <!-- BEGIN MENUBAR-->
-    <div id="menubar" class="menubar-inverse ">
-        <div class="menubar-fixed-panel">
-            <div>
-                <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-            <div class="expanded">
-                <a href="../../html/dashboards/dashboard.html">
-                    <span class="text-lg text-bold text-primary ">MATERIAL&nbsp;ADMIN</span>
-                </a>
-            </div>
-        </div>
-        <div class="menubar-scroll-panel">
+    <script>
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('.autocomplete-off').val('');
+            }, 15);
 
-            <!-- BEGIN MAIN MENU -->
-            <ul id="main-menu" class="gui-controls">
-
-                <!-- BEGIN DASHBOARD -->
-                <li>
-                    <a href="../../html/dashboards/dashboard.html" class="active">
-                        <div class="gui-icon"><i class="md md-home"></i></div>
-                        <span class="title">მთავარი</span>
-                    </a>
-                </li><!--end /menu-li -->
-                <!-- END DASHBOARD -->
-
-
-                <li>
-                    <a href="../../html/layouts/builder.html" >
-                        <div class="gui-icon"><i class="md md-web"></i></div>
-                        <span class="title">ჩემი საგნები</span>
-                    </a>
-                </li><!--end /menu-li -->
-
-            </ul><!--end .main-menu -->
-            <!-- END MAIN MENU -->
-
-            <div class="menubar-foot-panel">
-                <small class="no-linebreak hidden-folded">
-                    <span class="opacity-75">Copyright &copy; 2014</span> <strong>CodeCovers</strong>
-                </small>
-            </div>
-        </div><!--end .menubar-scroll-panel-->
-    </div><!--end #menubar-->
-    <!-- END MENUBAR -->
-
-    <!-- BEGIN OFFCANVAS RIGHT -->
-    <div class="offcanvas">
-
-        <!-- BEGIN OFFCANVAS SEARCH -->
-        <div id="offcanvas-search" class="offcanvas-pane width-8">
-            <div class="offcanvas-head">
-                <header class="text-primary">Search</header>
-                <div class="offcanvas-tools">
-                    <a class="btn btn-icon-toggle btn-default-light pull-right" data-dismiss="offcanvas">
-                        <i class="md md-close"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="offcanvas-body no-padding">
-                <ul class="list ">
-                    <li class="tile divider-full-bleed">
-                        <div class="tile-content">
-                            <div class="tile-text"><strong>A</strong></div>
-                        </div>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar4.jpg?1404026791" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Alex Nelson
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar9.jpg?1404026744" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Ann Laurens
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile divider-full-bleed">
-                        <div class="tile-content">
-                            <div class="tile-text"><strong>J</strong></div>
-                        </div>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar2.jpg?1404026449" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Jessica Cruise
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar8.jpg?1404026729" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Jim Peters
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile divider-full-bleed">
-                        <div class="tile-content">
-                            <div class="tile-text"><strong>M</strong></div>
-                        </div>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar5.jpg?1404026513" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Mabel Logan
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar11.jpg?1404026774" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Mary Peterson
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar3.jpg?1404026799" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Mike Alba
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile divider-full-bleed">
-                        <div class="tile-content">
-                            <div class="tile-text"><strong>N</strong></div>
-                        </div>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar6.jpg?1404026572" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Nathan Peterson
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile divider-full-bleed">
-                        <div class="tile-content">
-                            <div class="tile-text"><strong>P</strong></div>
-                        </div>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar7.jpg?1404026721" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Philip Ericsson
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="tile divider-full-bleed">
-                        <div class="tile-content">
-                            <div class="tile-text"><strong>S</strong></div>
-                        </div>
-                    </li>
-                    <li class="tile">
-                        <a class="tile-content ink-reaction" href="#offcanvas-chat" data-toggle="offcanvas" data-backdrop="false">
-                            <div class="tile-icon">
-                                <img src="{{url('/')."/assets"}}/img/avatar10.jpg?1404026762" alt="" />
-                            </div>
-                            <div class="tile-text">
-                                Samuel Parsons
-                                <small>123-123-3210</small>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div><!--end .offcanvas-body -->
-        </div><!--end .offcanvas-pane -->
-        <!-- END OFFCANVAS SEARCH -->
-
-        <!-- BEGIN OFFCANVAS CHAT -->
-        <div id="offcanvas-chat" class="offcanvas-pane style-default-light width-12">
-            <div class="offcanvas-head style-default-bright">
-                <header class="text-primary">Chat with Ann Laurens</header>
-                <div class="offcanvas-tools">
-                    <a class="btn btn-icon-toggle btn-default-light pull-right" data-dismiss="offcanvas">
-                        <i class="md md-close"></i>
-                    </a>
-                    <a class="btn btn-icon-toggle btn-default-light pull-right" href="#offcanvas-search" data-toggle="offcanvas" data-backdrop="false">
-                        <i class="md md-arrow-back"></i>
-                    </a>
-                </div>
-                <form class="form">
-                    <div class="form-group floating-label">
-                        <textarea name="sidebarChatMessage" id="sidebarChatMessage" class="form-control autosize" rows="1"></textarea>
-                        <label for="sidebarChatMessage">Leave a message</label>
-                    </div>
-                </form>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="list-chats">
-                    <li>
-                        <div class="chat">
-                            <div class="chat-avatar"><img class="img-circle" src="{{url('/')."/assets"}}/img/avatar1.jpg?1403934956" alt="" /></div>
-                            <div class="chat-body">
-                                Yes, it is indeed very beautiful.
-                                <small>10:03 pm</small>
-                            </div>
-                        </div><!--end .chat -->
-                    </li>
-                    <li class="chat-left">
-                        <div class="chat">
-                            <div class="chat-avatar"><img class="img-circle" src="{{url('/')."/assets"}}/img/avatar9.jpg?1404026744" alt="" /></div>
-                            <div class="chat-body">
-                                Did you see the changes?
-                                <small>10:02 pm</small>
-                            </div>
-                        </div><!--end .chat -->
-                    </li>
-                    <li>
-                        <div class="chat">
-                            <div class="chat-avatar"><img class="img-circle" src="{{url('/')."/assets"}}/img/avatar1.jpg?1403934956" alt="" /></div>
-                            <div class="chat-body">
-                                I just arrived at work, it was quite busy.
-                                <small>06:44pm</small>
-                            </div>
-                            <div class="chat-body">
-                                I will take look in a minute.
-                                <small>06:45pm</small>
-                            </div>
-                        </div><!--end .chat -->
-                    </li>
-                    <li class="chat-left">
-                        <div class="chat">
-                            <div class="chat-avatar"><img class="img-circle" src="{{url('/')."/assets"}}/img/avatar9.jpg?1404026744" alt="" /></div>
-                            <div class="chat-body">
-                                The colors are much better now.
-                            </div>
-                            <div class="chat-body">
-                                The colors are brighter than before.
-                                I have already sent an example.
-                                This will make it look sharper.
-                                <small>Mon</small>
-                            </div>
-                        </div><!--end .chat -->
-                    </li>
-                    <li>
-                        <div class="chat">
-                            <div class="chat-avatar"><img class="img-circle" src="{{url('/')."/assets"}}/img/avatar1.jpg?1403934956" alt="" /></div>
-                            <div class="chat-body">
-                                Are the colors of the logo already adapted?
-                                <small>Last week</small>
-                            </div>
-                        </div><!--end .chat -->
-                    </li>
-                </ul>
-            </div><!--end .offcanvas-body -->
-        </div><!--end .offcanvas-pane -->
-        <!-- END OFFCANVAS CHAT -->
-
-    </div><!--end .offcanvas-->
-    <!-- END OFFCANVAS RIGHT -->
-
-</div><!--end #base-->
-<!-- END BASE -->
+            $('#my-select').multiSelect();
+            $('#my-select-2').multiSelect();
+        });
+    </script>
 @stop
 
 
