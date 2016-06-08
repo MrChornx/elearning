@@ -40,10 +40,10 @@ template {
 a {
   background-color: transparent;
 }
-a:active,
+/*a:active,
 a:hover {
   outline: 0;
-}
+}*/
 abbr[title] {
   border-bottom: 1px dotted;
 }
@@ -1067,7 +1067,7 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-a {
+/*a {
   color: #42a5f5;
   text-decoration: none;
 }
@@ -1080,7 +1080,7 @@ a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
-}
+}*/
 figure {
   margin: 0;
 }
@@ -2464,7 +2464,6 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
 }
 input[type="search"] {
   box-sizing: border-box;
@@ -2927,7 +2926,7 @@ select[multiple].form-group-lg .form-control {
     padding-top: 6px;
   }
 }
-.btn {
+/*.btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: 500;
@@ -3313,7 +3312,7 @@ input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
-}
+}*/
 .fade {
   opacity: 0;
   transition: opacity 0.15s linear;
@@ -5224,6 +5223,9 @@ a.list-group-item-danger.active:focus {
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
 }
+.panel-heading h1, .panel-heading h2, .panel-heading h3, .panel-heading h4, .panel-heading h5 {
+  text-transform: uppercase;
+}
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
@@ -5725,6 +5727,8 @@ button.close {
   .modal-sm {
     width: 300px;
   }
+
+
 }
 @media (min-width: 992px) {
   .modal-lg {
@@ -6288,6 +6292,9 @@ button.close {
   th.visible-xs,
   td.visible-xs {
     display: table-cell !important;
+  }
+  .panel-heading {
+    text-align: center !important;
   }
 }
 @media (max-width: 767px) {

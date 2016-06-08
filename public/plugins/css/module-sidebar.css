@@ -7284,7 +7284,7 @@ html.st-layout .st-content {
 }
 .st-container {
   position: relative;
-  overflow: hidden;
+  overflow: auto;
 }
 .top-navbar .st-container,
 .ls-top-navbar .st-container {

@@ -18,25 +18,31 @@ To learn more about the development process, please refer to the documentation. 
     <!-- <link href="css/theme.bundle.min.css" rel="stylesheet"> -->
     <!-- Compressed Theme CORE
 This variant is to be used when loading the separate styling modules -->
-    <link href="{{url('/')."/plugins/css/theme-core.min.css"}}" rel="stylesheet">
+    <link href="{{url('/')."/plugins/css/theme-core.css"}}" rel="stylesheet">
     <!-- Standalone Modules
     As a convenience, we provide the entire UI framework broke down in separate modules
     Some of the standalone modules may have not been used with the current theme/module
     but ALL modules are 100% compatible -->
-    <link href="{{url('/')."/plugins/css/module-essentials.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-material.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-layout.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-sidebar.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-sidebar-skins.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-navbar.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-messages.min.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-essentials.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-material.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-layout.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-sidebar.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-sidebar-skins.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-navbar.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-messages.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/plugins/css/module-carousel-slick.min.css"}}" rel="stylesheet" />
-    <link href="{{url('/')."/plugins/css/module-charts.min.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/plugins/css/module-charts.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/plugins/css/module-maps.min.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/plugins/css/module-colors-alerts.min.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/plugins/css/module-colors-background.min.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/plugins/css/module-colors-buttons.min.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/plugins/css/module-colors-text.min.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/css/materialize.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/css/main.css"}}" rel="stylesheet" />
+
+
+    <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!-- If you don't need support for Internet Explorer <= 8 you can safely remove these -->
@@ -49,7 +55,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
  <!-- Wrapper required for sidebar transitions -->
     <div class="st-container">
         <!-- Fixed navbar -->
-        <div class="navbar navbar-size-large navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar navbar-size-large navbar-default navbar-fixed-top z-depth-1" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a href="#sidebar-menu" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-ellipsis-v"></i></a>
@@ -113,48 +119,62 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-forum.html">Forum Home</a></li>
-                                <li><a href="app-forum-category.html">Forum Category</a></li>
+                                <li><a href="/forum">Forum Home</a></li>
+                                <li><a href="/forum-category">Forum Category</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-directory-grid.html">Courses Grid</a></li>
-                                <li><a href="app-directory-list.html">Courses List</a></li>
-                                <li><a href="app-student-course.html">Course Details</a></li>
+                                <li><a href="/directory">Courses Grid</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="app-student-dashboard.html">Dashboard</a></li>
-                                <li><a href="app-student-courses.html">My Courses</a></li>
-                                <li><a href="app-take-course.html">Take Course</a></li>
-                                <li><a href="app-course-forums.html">Course Forums</a></li>
-                                <li><a href="app-take-quiz.html">Take Quiz</a></li>
-                                <li><a href="app-student-profile.html">Edit Profile</a></li>
-                                <li><a href="app-student-billing.html">Edit Billing</a></li>
-                                <li><a href="app-student-messages.html">Messages</a></li>
+                                <li><a href="/dashboard">Dashboard</a></li>
+                                <li><a href="/my-courses">My Courses</a></li>
+                                <li><a href="/show-course">Take Course</a></li>
+                                <li><a href="/course-forums">Course Forums</a></li>
+                                <!-- <li><a href="app-take-quiz.html">Take Quiz</a></li> -->
+                                <li><a href="/profile">Edit Profile</a></li>
+                                <li><a href="/my-messages">Messages</a></li>
                             </ul>
                         </li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="active"><a href="app-instructor-dashboard.html">Dashboard</a></li>
-                                <li><a href="app-instructor-courses.html">My Courses</a></li>
-                                <li><a href="app-instructor-course-edit-course.html">Edit Course</a></li>
-                                <li><a href="app-instructor-earnings.html">Earnings</a></li>
-                                <li><a href="app-instructor-statement.html">Statement</a></li>
-                                <li><a href="app-instructor-profile.html">Edit Profile</a></li>
-                                <li><a href="app-instructor-billing.html">Edit Billing</a></li>
-                                <li><a href="app-instructor-messages.html">Messages</a></li>
+                                <li><a href="/instructor-courses">My Courses</a></li>
+                                <li><a href="/edit-course">Edit Course</a></li>
+                                <li><a href="/instructor-statement">Statement</a></li>
+                                <li><a href="/instructor-profile">Edit Profile</a></li>
+                                <li><a href="/instructor-messages">Messages</a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-nav-bordered navbar-right">
+                        <!-- localization -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle user" data-toggle="dropdown" style="font-size:12px;">
+                                <span class="nav-sec-img-wrapper">
+                                    <img src="{{url('/').'/img/'.App::getLocale().'.png'}}" alt="Bill" class="img-circle secondary" width="20" />
+                                </span>
+                                  {{ Config::get('languages')[App::getLocale()] }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                        <li>
+                                            <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
                         <!-- notifications -->
                         <li class="dropdown notifications updates">
+
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
                                 <span class="badge badge-primary">4</span>
@@ -231,6 +251,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     };
     </script>
     <!-- Separate Vendor Script Bundles -->
+
+    
+
     <script src="{{url('/')."/plugins/js/vendor-core.min.js"}}"></script>
     <script src="{{url('/')."/plugins/js/vendor-countdown.min.js"}}"></script>
     <script src="{{url('/')."/plugins/js/vendor-tables.min.js"}}"></script>
@@ -269,5 +292,11 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         module-bundle-main.js already includes theme-core.js so this should be loaded
         ONLY when using the standalone modules; -->
     <script src="{{url('/')."/plugins/js/theme-core.min.js"}}"></script>
+
+    <script src="{{url('/')."/js/materialize.min.js"}}"></script>
+    <script src="{{url('/')."/plugins/validator/dist/jquery.validate.js"}}"></script>
+
+
+
 </body>
 </html>

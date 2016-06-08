@@ -76,7 +76,7 @@
 .paper-shadow.panel {
   position: relative;
 }
-.btn {
+/*.btn {
   text-transform: uppercase;
 }
 .paper-fab {
@@ -334,7 +334,6 @@
   background: radial-gradient(rgba(66, 165, 245, 0.2) 0, rgba(66, 165, 245, 0.3) 40%, rgba(66, 165, 245, 0.4) 50%, rgba(66, 165, 245, 0.5) 60%, rgba(66, 165, 245, 0) 70%);
 }
 @-webkit-keyframes rippleAnimation {
-  /* scale the element to 250% to safely cover the entire link and fade it out */
   100% {
     opacity: 0;
     -webkit-transform: scale(2.5);
@@ -342,13 +341,12 @@
   }
 }
 @keyframes rippleAnimation {
-  /* scale the element to 250% to safely cover the entire link and fade it out */
   100% {
     opacity: 0;
     -webkit-transform: scale(2.5);
             transform: scale(2.5);
   }
-}
+}*/
 .sidebar.sidebar-skin-material-blue {
   background: #ffffff;
 }

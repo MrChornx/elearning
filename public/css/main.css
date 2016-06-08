@@ -1,0 +1,92 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: bpg;
+}
+
+button, .btn, h3, h2, h1, h4, .text-lg, .card-head{
+    font-family: bpg_uppercase;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+@font-face {
+    font-family: 'bpg';
+    src: url('../fonts/bpg_extrasquare_2009.eot');
+    src: url('../fonts/bpg_extrasquare_2009.eot') format('embedded-opentype'),
+    url('../fonts/bpg_extrasquare_2009.woff2') format('woff2'),
+    url('../fonts/bpg_extrasquare_2009.woff') format('woff'),
+    url('../fonts/bpg_extrasquare_2009.ttf') format('truetype'),
+    url('../fonts/bpg_extrasquare_2009.svg#bpg_extrasquare_2009') format('svg');
+}
+
+@font-face {
+    font-family: 'bpg_uppercase';
+    src: url('../fonts/bpg_extrasquare_mtavruli_2009.eot');
+    src: url('../fonts/bpg_extrasquare_mtavruli_2009.eot') format('embedded-opentype'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.woff2') format('woff2'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.woff') format('woff'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.ttf') format('truetype'),
+    url('../fonts/bpg_extrasquare_mtavruli_2009.svg#bpg_extrasquare_mtavruli_2009') format('svg');
+}
+
+.card-title {
+    font-size: 33px;
+    padding: 25px 6px 15px;
+    transition: all .2s ease-in-out;
+    text-transform: uppercase;
+}
+
+@media (max-width: 420px) {
+  .card-title {
+    font-size: 25px !important;
+    padding: 15px 6px !important;
+
+  }
+}
+
+.btn-full {
+    display: block !important;
+    width: 100%;
+}
+
+.navbar-nav > li > a img.img-circle.secondary {
+    width: 36px !important;
+    position: absolute;
+    top: -3px;
+    left: -5px;
+}
+.nav-sec-img-wrapper {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+}
+
+div.invalid {
+    margin-top: -15px;
+    font-size: 12px;
+    padding-top: 5px;
+    line-height: 10px;
+    color: #f44336;
+}

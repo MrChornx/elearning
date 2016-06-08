@@ -16,4 +16,9 @@ Route::get('/dashboard', 'Controller@showDashboard');
 Route::get('/profile', 'Controller@showProfile');
 Route::get('/inst-profile', 'Controller@showInstProfile');
 Route::get('login', 'Controller@getLogin');
+Route::get('register', 'Controller@getRegister');
+Route::post('register', 'Controller@postRegister');
+
+
 Route::get('admin/dashboard', 'AdminController@getDashboard');
+Route::post('admin/dashboard', 'Controller@postLogin');

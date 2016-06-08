@@ -16,4 +16,19 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'register' => [
+        'create account' => 'create account',
+        'first name' => 'first name',
+        'last name' => 'last name',
+        'email adress' => 'email adress',
+        'password' => 'password',
+        're-type password' => 're-type password',
+        'I agree with' => '* I Agree with',
+        'Terms & Conditions!' => 'Terms & Conditions!',
+        'Create an Account' => 'Create an Account',
+        'agree_terms' => 'please agree the terms & conditions',
+
+    ],
+    
+
 ];

@@ -7,7 +7,7 @@ body {
   line-height: 1.53rem;
   font-size: 1rem;
 }
-.text-display-4 {
+/*.text-display-4 {
   font-size: 8.6rem;
   font-weight: 300;
   line-height: 8.6rem;
@@ -96,7 +96,7 @@ h6 {
 }
 .btn {
   font-weight: 500;
-}
+}*/
 .btn-white {
   color: #444444;
   background-color: #ffffff;

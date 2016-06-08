@@ -19,7 +19,7 @@ body {
     font-family: bpg;
 }
 
-button, .btn, h3, h2, h1, h4, .text-lg{
+button, .btn, h3, h2, h1, h4, .text-lg, .card-head{
     font-family: bpg_uppercase;
 }
 
