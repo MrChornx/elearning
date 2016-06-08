@@ -17,6 +17,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     font-family: bpg;
+    height: auto!important;
 }
 
 button, .btn, h3, h2, h1, h4, .text-lg, .card-head{

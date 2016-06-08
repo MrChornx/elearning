@@ -48,10 +48,10 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a href="{{url('edit-subject/'.$subject->id)}}">რედაქტირება</a>
+                                    <a href="{{url('admin/edit-subject/'.$subject->id)}}">რედაქტირება</a>
                                 </td>
                                 <td>
-                                    <a href="{{url('add-theory/'.$subject->id)}}">მასალის დამატება</a>
+                                    <a href="{{url('admin/add-theory/'.$subject->id)}}">მასალის დამატება</a>
                                 </td>
                             </tr>
                         @endforeach

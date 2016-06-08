@@ -18,7 +18,17 @@ class AdminController extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
     function getDashboard(){
-        return view('admin.dashboard');
+        $user = Session::get('user');
+        $courses = Course::all();
+        $users = User::all()->where('type',2);
+        if(empty($user)){
+            return Redirect::to(url('login'));
+        }
+        $userId = $user->id;
+        $subjects = Subject::whereHas('users', function($q) use ($userId) {
+            $q->where('user_id', $userId);
+        })->get();
+        return view('admin.dashboard')->with('subjects',$subjects)->with('users',$users)->with('courses',$courses);
     }
 
     function getAddSubject(){
@@ -56,5 +66,15 @@ class AdminController extends BaseController
         //var_dump($subjects);
 
         return view('admin.my-subjects')->with('subjects',$subjects);
+    }
+
+    function getEditSubject($id){
+        $subject = Subject::find($id);
+        $courses = Course::all();
+        $users = User::all()->where('type',2);
+        return view('admin.edit-subject')
+            ->with('subject',$subject)
+            ->with('courses',$courses)
+            ->with('users',$users);
     }
 }

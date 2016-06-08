@@ -23,3 +23,5 @@ Route::post('admin/dashboard', 'Controller@postLogin');
 Route::get('admin/add-subject', 'AdminController@getAddSubject');
 Route::post('admin/add-subject', 'AdminController@postAddSubject');
 Route::get('admin/my-subjects', 'AdminController@getMySubjects');
+Route::get('admin/edit-subject/{id}', 'AdminController@getEditSubject');
+Route::post('admin/edit-subject', 'AdminController@postEditSubject');

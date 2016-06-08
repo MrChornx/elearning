@@ -67,8 +67,16 @@
                     <a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
                         <img src="{{url('/')."/assets"}}/img/avatar1.jpg?1403934956" alt="" />
 								<span class="profile-info">
-									{{Session::get('user')->firstname}}
-									<small>Administrator</small>
+									{{Session::get('user')->firstname." ".Session::get('user')->lastname}}
+									<small>
+                                        @if(Session::get('user')->type==2)
+                                            ლექტორი
+                                        @elseif(Session::get('user')->type==1)
+                                            სტუდენტი
+                                        @elseif(Session::get('user')->type==3)
+                                            ადმინისტრატორი
+                                        @endif
+                                    </small>
 								</span>
                     </a>
                     <ul class="dropdown-menu animation-dock">
