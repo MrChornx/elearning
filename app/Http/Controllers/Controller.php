@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Course;
+use App\Subject;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -78,7 +80,9 @@ class Controller extends BaseController
 	}
 	
 	function showDirectory() {
-		return view('main/directory');
+
+		$courses = Course::all();
+		return view('main/directory', ['courses' => $courses]);
 	}
 
 	function showShowCourse($id) {

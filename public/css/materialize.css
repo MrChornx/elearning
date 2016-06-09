@@ -3000,7 +3000,7 @@ td, th {
   border: none;
 }
 
-span.badge {
+/*span.badge {
   min-width: 3rem;
   padding: 0 6px;
   text-align: center;
@@ -3010,7 +3010,7 @@ span.badge {
   position: absolute;
   right: 15px;
   box-sizing: border-box;
-}
+}*/
 
 span.badge.new {
   font-weight: 300;
@@ -3228,14 +3228,26 @@ input[type=range] + .thumb {
 
 @media only screen and (min-width: 601px) {
   .container {
-    width: 85%;
+    width: 90%;
   }
 }
 
 @media only screen and (min-width: 993px) {
   .container {
-    width: 70%;
+    width: 85%;
   }
+}
+
+@media only screen and (min-width: 1220px) {
+    .container {
+      width: 80%;
+    }
+}
+
+@media only screen and (min-width: 1560px) {
+    .container {
+      width: 75%;
+    }
 }
 
 .container .row {

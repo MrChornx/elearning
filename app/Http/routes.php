@@ -32,6 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
+	Route::any('course-switch', ['as'=>'course.switch', 'uses'=>'CourseController@switchCourse']);
 
 
 

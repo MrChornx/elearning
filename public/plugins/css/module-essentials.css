@@ -10331,6 +10331,7 @@ ul.icon-list.icon-list-block li:not(:last-of-type) {
 .list-group .list-group-item.active,
 .list-group .list-group-item.active > a {
   color: #fff;
+  display: block;
 }
 .list-group .list-group-item > *:last-child {
   margin-bottom: 0 !important;

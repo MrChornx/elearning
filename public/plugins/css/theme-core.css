@@ -4338,7 +4338,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #3c4340;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #212121;
+  color: #757575;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -4749,6 +4749,7 @@ a.label:focus {
   text-align: center;
   background-color: #eeeeee;
   border-radius: 10px;
+  margin-left: 10px;
 }
 .badge:empty {
   display: none;
