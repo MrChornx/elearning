@@ -5421,6 +5421,7 @@ textarea.materialize-textarea + label:after {
   font-size: 1rem;
   cursor: text;
   transition: .2s ease-out;
+  text-align: left;
 }
 
 .input-field label.active {

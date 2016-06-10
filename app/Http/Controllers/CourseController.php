@@ -37,19 +37,19 @@ class CourseController extends BaseController {
 	                        <div class="panel panel-default paper-shadow" data-z="0.5">
 	                            <div class="cover overlay cover-image-full hover">
 	                                <span class="img icon-block height-150 bg-default"></span>
-	                                <a href="website-course.html" class="padding-none overlay overlay-full icon-block bg-default">
+	                                <a href="'.route('show.course', $subject->id).'" class="padding-none overlay overlay-full icon-block bg-default">
 	                                    <span class="v-center">
 	                                        <i class="fa fa-github"></i>
 	                                    </span>
 	                                </a>
-	                                <a href="website-course.html" class="overlay overlay-full overlay-hover overlay-bg-white">
+	                                <a href="'.route('show.course', $subject->id).'" class="overlay overlay-full overlay-hover overlay-bg-white">
 	                                    <span class="v-center">
 	                                        <span class="btn btn-circle btn-white btn-lg"><i class="fa fa-graduation-cap"></i></span>
 	                                    </span>
 	                                </a>
 	                            </div>
 	                            <div class="panel-body">
-	                                <h5 class="text-headline margin-v-0-10 course-header"><a href="website-course.html">'.$subject->name.'</a></h5>
+	                                <h5 class="text-headline margin-v-0-10 course-header"><a href="'.route('show.course', $subject->id).'">'.$subject->name.'</a></h5>
 	                                <!--p class="small margin-none">
 	                                    <span class="fa fa-fw fa-star text-yellow-800"></span>
 	                                    <span class="fa fa-fw fa-star text-yellow-800"></span>

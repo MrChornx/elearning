@@ -26,7 +26,7 @@
               <input id="subject_search_input" type="tel" class="validate" name="subject_search_input">
               <label for="subject_search_input">{{ trans('main.all.search') }}</label>
             </div>
-          </div>
+        </div>
         <div class="row">
             <div class="col-md-9">
                 <!-- <div class="row isotope-wrapper" data-toggle="isotope"">

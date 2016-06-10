@@ -40,9 +40,11 @@ This variant is to be used when loading the separate styling modules -->
     <link href="{{url('/')."/plugins/css/module-colors-text.min.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/css/materialize.css"}}" rel="stylesheet" />
     <link href="{{url('/')."/css/main.css"}}" rel="stylesheet" />
-
+    <link href="{{url('/')."/bower_components/remodal/dist/remodal.css"}}" rel="stylesheet" />
+    <link href="{{url('/')."/bower_components/remodal/dist/remodal-default-theme.css"}}" rel="stylesheet" />
 
     <script src="{{url('/')."/js/jquery/jquery-2.2.4.min.js"}}"></script>
+    <script src="{{url('/')."/bower_components/remodal/dist/remodal.min.js"}}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,6 +135,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 <li><a href="{{url('/').'/directory'}}">{{ trans('main.header.courses_sub.courses grid') }}</a></li>
                             </ul>
                         </li>
+                        @if(Session::get('user'))
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.header.student') }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -156,6 +159,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 <li><a href="{{url('/').'/instructor-messages'}}">{{ trans('main.header.instructor_sub.messages') }}</a></li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                     <ul class="nav navbar-nav navbar-nav-bordered navbar-right">
                         <!-- localization -->
@@ -176,6 +180,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 @endforeach
                             </ul>
                         </li>
+                        @if(Session::get('user'))
                         <!-- notifications -->
                         <li class="dropdown notifications updates">
 
@@ -202,16 +207,26 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         </li>
                         <!-- // END notifications -->
                         <!-- User -->
+                        
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                                <img src="{{url('/')."/plugins/images/people/110/guy-5.jpg"}}" alt="Bill" class="img-circle" width="40" /> Bill <span class="caret"></span>
+                                <img src="{{url('/uploads/avatars/').'/'.Session::get('user')->avatar}}" alt="{{Session::get('user')->username}}" class="img-circle" width="40" /> {{Session::get('user')->username}} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="app-student-profile.html">{{ trans('main.header.account.account') }}</a></li>
-                                <li><a href="app-student-billing.html">{{ trans('main.header.account.logout') }}</a></li>
+                                <li><a href="{{ route('log.out') }}">{{ trans('main.header.account.logout') }}</a></li>
     
                             </ul>
                         </li>
+                        @else
+                            <li class="inline-li">
+                                <ul class="" role="">
+                                    
+                                    <li><a href="app-student-billing.html" class="sign-in-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ trans('main.header.account.login') }}</a></li>
+                                    <li><a href="app-student-profile.html" class="sign-up-btn"><i class="fa fa-user-plus" aria-hidden="true"></i> {{ trans('main.header.account.signup') }}</a></li>
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -221,6 +236,19 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
         <div class="main-container">
             @yield('content')
+        </div>
+
+        <div class="remodal-bg"></div>
+
+        <div class="remodal z-depth-5" data-remodal-id="modal">
+          <button data-remodal-action="close" class="remodal-close"></button>
+          <h1>Remodal</h1>
+          <p>
+            Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
+          </p>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
         </div>
 
                 <!-- Footer -->
@@ -303,6 +331,61 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     <script type="text/javascript">
         $.ajaxSetup({
            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+        });
+
+
+
+
+        $(function () {
+
+            $(window).on('resize orientationshange', function() {
+                $('.remodal').css({'max-height': $('.remodal').find('.modal-form:first').height()});
+            });
+
+            $('.sign-up-btn').on('click', function(e, type=0, stat=0) {
+                $.ajax({
+                    url: "{{ route('get.sign.up') }}",
+                    type: "post",
+                    datatype: 'html',
+                 //   data: {'course_id' : $(this).data('course-id')},
+                    success: function(data){
+                        if (type == 0) {
+                            $('.remodal').html('<button data-remodal-action="close" class="remodal-close"></button>');
+                            $('.remodal').append(data.html);
+                            var inst = $('.remodal').remodal();
+                            inst.open();
+                        } else if (type == 1) {
+                            $('.remodal').html('<button data-remodal-action="close" class="remodal-close"></button>');
+                            $('.remodal').append(data.html);
+                            
+                        }
+                        $('.remodal').css({'max-height':$('.remodal').find('.modal-form:first').height()});
+                        
+
+
+                    }
+                }); 
+                e.preventDefault();
+            });
+
+            $('.sign-in-btn').on('click', function(e) {
+                $.ajax({
+                    url: "{{ route('get.sign.in') }}",
+                    type: "post",
+                    datatype: 'html',
+                 //   data: {'course_id' : $(this).data('course-id')},
+                    success: function(data){
+                        $('.remodal').html('<button data-remodal-action="close" class="remodal-close"></button>');
+                        $('.remodal').append(data.html);
+                        var inst = $('.remodal').remodal();
+                        inst.open();
+                        $('.remodal').css({'max-height': $('.remodal').find('.modal-form:first').height()});
+
+                    }
+                }); 
+                e.preventDefault();
+            });
+
         });
     </script>
 

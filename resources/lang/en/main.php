@@ -34,8 +34,9 @@ return [
         ],
         'account' => [
             'account' => 'account',
-            'login' => 'login',
-            'logout' => 'logout',
+            'login' => 'log in',
+            'signup' => 'sign up',
+            'logout' => 'log out',
         ]
     ],
 

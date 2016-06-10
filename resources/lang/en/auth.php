@@ -29,6 +29,12 @@ return [
         'agree_terms' => 'please agree the terms & conditions',
 
     ],
+
+    'login' => [
+        'login' => 'login',
+        'username' => 'username',
+        'password' => 'password',
+    ],
     
 
 ];

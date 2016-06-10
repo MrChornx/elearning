@@ -10425,6 +10425,11 @@ hr {
 }
 .page-section {
   padding: 40px 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .page-section.half {
   padding: 16px 0;

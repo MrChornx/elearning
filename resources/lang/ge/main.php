@@ -35,6 +35,7 @@ return [
         'account' => [
             'account' => 'პროფილი',
             'login' => 'შესვლა',
+            'signup' => 'რეგისტრაცია',
             'logout' => 'გამოსვლა',
         ]
     ],

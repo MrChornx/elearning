@@ -54,6 +54,46 @@ main {
     text-transform: uppercase;
 }
 
+.inline-li > ul{
+    padding: 10px 20px;
+}
+.inline-li > ul > li > a {
+    font-size: 12px;
+    color: #757575;
+    transition: all .1s ease-in-out;
+}
+.inline-li > ul > li > a > i {
+    color: #3094e4;
+}
+
+.inline-li > ul > li > a:focus, .inline-li > ul > li > a:hover{
+    color: #2196f3;
+}
+.sign-up-form, .login-form {
+    width: 450px;
+}
+.float-message {
+    text-align: left;
+}
+.inline-message-box {
+    padding: 10px;
+    margin-bottom: 25px;
+    border-radius: 2px;
+    -webkit-transition: background-color .2s linear;
+    -moz-transition: background-color .2s linear;
+    -o-transition: background-color .2s linear;
+    -ms-transition: background-color .2s linear;
+    transition: background-color .2s linear;
+}
+.inline-message-box.error-message {
+    background-color: #F44336;
+    color: #fff;
+}
+
+.inline-message-box.success-message {
+    background-color: #4CAF50;
+    color: #fff;
+}
 
 
 @media (max-width: 1450px) {
@@ -63,6 +103,23 @@ main {
   }
 }
 
+@media (max-width: 991px) {
+    .inline-li > ul{
+        padding: 2px 15px;
+    }
+
+    .sign-up-form, .login-form {
+        width: auto;
+    }
+    .media.v-middle .media-body h1 {
+        font-size: 40px;
+    }
+    .page-section {
+        padding: 20px 0;
+    }
+
+}
+
 
 @media (max-width: 420px) {
   .card-title {
@@ -70,6 +127,9 @@ main {
     padding: 15px 6px !important;
 
   }
+    .sign-up-form, .login-form {
+        width: auto;
+    }
 }
 
 

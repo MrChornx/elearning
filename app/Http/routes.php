@@ -28,16 +28,18 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/forum-thread', 'Controller@showForumThread');
 	Route::get('/forum', 'Controller@showForum');
 	Route::get('/directory', 'Controller@showDirectory');
-	Route::get('/show-course/{course_id}', 'Controller@showShowCourse');
+	Route::get('/show-course/{course_id}', ['as'=>'show.course', 'uses'=>'Controller@showShowCourse']);
+
 
 
 	Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 	Route::any('course-switch', ['as'=>'course.switch', 'uses'=>'CourseController@switchCourse']);
 
+	Route::any('get-sign-up', ['as'=>'get.sign.up', 'uses'=>'AuthController@showSignUp']);
 
-
-	Route::get('/sign-up', 'Controller@showSignUp');
-	Route::get('/main-login', 'Controller@showLogin');
+	Route::any('get-sign-in', ['as'=>'get.sign.in', 'uses'=>'AuthController@showLogin']);
+	Route::any('post-sign-in', ['as'=>'post.sign.in', 'uses'=>'AuthController@login']);
+	Route::any('log-out', ['as'=>'log.out', 'uses'=>'AuthController@logout']);
 
 	Route::get('/edit-course', 'Controller@showEditCourse');
 	Route::get('/instructor-courses', 'Controller@showInstCourses');
