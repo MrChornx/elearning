@@ -91,8 +91,14 @@ class Controller extends BaseController
 
 
 
+	function showSignUp() {
+		return view('main/sign-up');
+	}
 
-	
+	function showLogin() {
+		return view('main/login');
+	}
+
 
 	function showEditCourse() {
 		return view('main/edit-course');
@@ -117,10 +123,6 @@ class Controller extends BaseController
 	function showInstStatement() {
 		return view('main/instructor-statement');
 	}
-	
-
-
-
 
 
     function getRegister(){

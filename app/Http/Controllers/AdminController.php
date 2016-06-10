@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\File;
+use App\Post;
 use App\Subject;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -12,11 +14,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+    function __construct() {
+        if(Session::get('user')->type<2){
+            header('Location: '.url('login'));
+            die();
+        }
+    }
+
     function getDashboard(){
         $user = Session::get('user');
         $courses = Course::all();
@@ -46,8 +57,9 @@ class AdminController extends BaseController
         }
         $subject = new Subject;
         $subject->name = $input['name'];
+        $subject->password = $input['password'];
         $subject->save();
-        Subject::find($subject->id)->users()->attach($input['lecturers']) ;
+        Subject::find($subject->id)->users()->attach($input['lecturers']);
         Subject::find($subject->id)->courses()->attach($input['courses']);
         return Redirect::to(url('admin/my-subjects'))->with('msg-success', 'საგანი წარმატებით დაემატა');
     }
@@ -76,5 +88,47 @@ class AdminController extends BaseController
             ->with('subject',$subject)
             ->with('courses',$courses)
             ->with('users',$users);
+    }
+
+    function getAddTheory($subject){
+        return view('admin.add-theory')->with('id',$subject);
+    }
+
+    function postAddTheory(){
+
+        $heading = Input::get('heading');
+        $text = Input::get('text');
+        $subject = Input::get('subject');
+
+        if(empty($heading)){
+            return Redirect::to(url('admin/add-theory/'.$subject))->with('msg', 'შეიყვანეთ მონაცემები სრულად');
+        }
+
+        $post = new Post;
+        $post->heading = $heading;
+        $post->text = $text;
+        $post->subject_id = $subject;
+        $post->save();
+
+        if(!empty($_FILES["file"]["name"][0])){
+            for($i=0; $i<count($_FILES["file"]["name"]); $i++){
+                if(empty($_FILES["file"]["name"][$i]))
+                    continue;
+                $path =  base_path() . '/public/uploads/files/';
+                $name = bin2hex(openssl_random_pseudo_bytes(10));
+                $ext = pathinfo($_FILES["file"]["name"][$i], PATHINFO_EXTENSION);
+                $target_file = $path . basename("$name.$ext");
+                if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $target_file)){
+                    $file = new File;
+                    $file->filename = $name;
+                    $file->location = $target_file;
+                    $file->post_id = $post->id;
+                    $file->save();
+                }
+            }
+        }
+
+        return Redirect::to(url('admin/my-subjects'))->with('msg-success', 'მასალა წარმატებით დაემატა');
+
     }
 }

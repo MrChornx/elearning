@@ -44,7 +44,22 @@
                         </div>
                         <label for="my-select"><h4>ლექტორები</h4></label>
                     </div>
+
+                    <div class="form-group">
+                        <div class="checkbox checkbox-inline checkbox-styled">
+                            <label>
+                                <input type="checkbox" id="checkbox"> <span>საგნის ჩაკეტვა</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="passwordCont" style="display: none">
+                        <label for="subject-password">პაროლი</label>
+                        <div style="margin-top:10px"></div>
+                        <input type="text" value="" name="password" id="subject-password">
+                    </div>
                 </div>
+
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -66,6 +81,11 @@
 
             $('#my-select').multiSelect();
             $('#my-select-2').multiSelect();
+
+            $("#checkbox").change(function(){
+                $("#passwordCont").fadeToggle();
+                $("#subject-password").val('');
+            })
         });
     </script>
 @stop

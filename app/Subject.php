@@ -24,6 +24,11 @@ class Subject extends Authenticatable
         return $this->belongsToMany('App\Course','subjects_courses','subject_id','course_id');
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Post','subject_id');
+    }
+
 
 
 
