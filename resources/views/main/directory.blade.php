@@ -8,7 +8,6 @@
         <div class="media v-middle">
             <div class="media-body">
                 <h1 class="text-display-2 margin-none">{{ trans('main.all.library') }}</h1>
-                <p class="text-light lead">Browse through thousands of lessons.</p>
             </div>
             <div class="media-right">
                 <div class="width-100 text-right">

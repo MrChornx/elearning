@@ -136,29 +136,32 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                             </ul>
                         </li>
                         @if(Session::get('user'))
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.header.student') }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{url('/').'/dashboard'}}">{{ trans('main.header.student_sub.dashboard') }}</a></li>
-                                <li><a href="{{url('/').'/my-courses'}}">{{ trans('main.header.student_sub.my courses') }}</a></li>
-                                <li><a href="{{url('/').'/show-course'}}">{{ trans('main.header.student_sub.take course') }}</a></li>
-                                <li><a href="{{url('/').'/course-forums'}}">{{ trans('main.header.student_sub.course forums') }}</a></li>
-                                <!-- <li><a href="app-take-quiz.html">Take Quiz</a></li> -->
-                                <li><a href="{{url('/').'/profile'}}">{{ trans('main.header.student_sub.profile') }}</a></li>
-                                <li><a href="{{url('/').'/my-messages'}}">{{ trans('main.header.student_sub.messages') }}</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.header.instructor') }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="active"><a href="app-instructor-dashboard.html">{{ trans('main.header.instructor_sub.dashboard') }}</a></li>
-                                <li><a href="{{url('/').'/instructor-courses'}}">{{ trans('main.header.instructor_sub.my courses') }}</a></li>
-                                <li><a href="{{url('/').'/edit-course'}}">{{ trans('main.header.instructor_sub.edit course') }}</a></li>
-                                <li><a href="{{url('/').'/instructor-statement'}}">{{ trans('main.header.instructor_sub.statements') }}</a></li>
-                                <li><a href="{{url('/').'/instructor-profile'}}">{{ trans('main.header.instructor_sub.profile') }}</a></li>
-                                <li><a href="{{url('/').'/instructor-messages'}}">{{ trans('main.header.instructor_sub.messages') }}</a></li>
-                            </ul>
-                        </li>
+                            @if(Session::get('user')->type == 1) 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.all.cabinet') }} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{url('/').'/dashboard'}}">{{ trans('main.header.student_sub.dashboard') }}</a></li>
+                                        <li><a href="{{url('/').'/my-courses'}}">{{ trans('main.header.student_sub.my courses') }}</a></li>
+                                        <li><a href="{{url('/').'/show-course'}}">{{ trans('main.header.student_sub.take course') }}</a></li>
+                                        <li><a href="{{url('/').'/course-forums'}}">{{ trans('main.header.student_sub.course forums') }}</a></li>
+                                        <!-- <li><a href="app-take-quiz.html">Take Quiz</a></li> -->
+                                        <li><a href="{{url('/').'/profile'}}">{{ trans('main.header.student_sub.profile') }}</a></li>
+                                        <li><a href="{{url('/').'/my-messages'}}">{{ trans('main.header.student_sub.messages') }}</a></li>
+                                    </ul>
+                                </li>
+                            @elseif(Session::get('user')->type == 2)
+                                <li class="dropdown active">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.all.cabinet') }}  <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="active"><a href="app-instructor-dashboard.html">{{ trans('main.header.instructor_sub.dashboard') }}</a></li>
+                                        <li><a href="{{url('/').'/instructor-courses'}}">{{ trans('main.header.instructor_sub.my courses') }}</a></li>
+                                        <li><a href="{{url('/').'/edit-course'}}">{{ trans('main.header.instructor_sub.edit course') }}</a></li>
+                                        <li><a href="{{url('/').'/instructor-statement'}}">{{ trans('main.header.instructor_sub.statements') }}</a></li>
+                                        <li><a href="{{url('/').'/instructor-profile'}}">{{ trans('main.header.instructor_sub.profile') }}</a></li>
+                                        <li><a href="{{url('/').'/instructor-messages'}}">{{ trans('main.header.instructor_sub.messages') }}</a></li>
+                                    </ul>
+                                </li>
+                            @endif
                         @endif
                     </ul>
                     <ul class="nav navbar-nav navbar-nav-bordered navbar-right">

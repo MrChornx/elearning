@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Session;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+    function __construct() {
+        if(Session::get('user')){
+            header('Location: '.url('/'));
+            die();
+        }
+    }
+
     function showIndex(){
     	//App::setLocale('ge');
         return view('main/index');
@@ -68,6 +76,7 @@ class Controller extends BaseController
 	}
 
 	function showCourse() {
+		
 		return view('main/course');
 	}
 
@@ -86,11 +95,25 @@ class Controller extends BaseController
 	}
 
 	function showShowCourse($id) {
-		return view('main/show-course', ['course_id' => $id]);
+
+		$course = Subject::find($id);
+		$user = Session::get('user');
+		$match = false;
+
+		if ($user) {
+			$match_pivot = $course->users()->having('id','=',$user->id)->wherePivot('type', 2)->get();
+			if ($match_pivot->count() > 0) {
+				$match = true;
+			}
+		}
+
+
+	
+		return view('main/show-course', ['course' => $course, 'match' => $match]);
 	}
 
 
-
+/*
 	function showSignUp() {
 		return view('main/sign-up');
 	}
@@ -98,7 +121,7 @@ class Controller extends BaseController
 	function showLogin() {
 		return view('main/login');
 	}
-
+*/
 
 	function showEditCourse() {
 		return view('main/edit-course');

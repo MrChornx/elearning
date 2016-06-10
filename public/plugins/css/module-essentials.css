@@ -97,7 +97,7 @@ h6 {
 .btn {
   font-weight: 500;
 }*/
-.btn-white {
+/*.btn-white {
   color: #444444;
   background-color: #ffffff;
   border-color: #efefef;
@@ -301,7 +301,7 @@ fieldset[disabled] .btn-inverse.active {
 }
 .btn-group-footer .btn:hover {
   color: #42a5f5;
-}
+}*/
 .badge.badge-primary {
   background: #42a5f5;
   color: #fff;

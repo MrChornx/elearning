@@ -45,6 +45,10 @@ return [
         'search' => 'ძიება',
         'faculty' => 'ფაკულტეტები',
         'no such course' => '<i class="fa fa-meh-o" aria-hidden="true"></i> მსგავსი კურსი ვერ მოიძებნა',
+        'enroll' => 'გაწევრიანება',
+        'cabinet' => 'ჩემი კაბინეტი',
+        'instructor' => 'ლექტორი',
+        'student' => 'სტუდენტი',
 
     ]
 

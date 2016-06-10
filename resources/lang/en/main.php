@@ -45,6 +45,11 @@ return [
         'search' => 'search',
         'faculty' => 'faculty',
         'no such course' => '<i class="fa fa-meh-o" aria-hidden="true"></i> No such course found',
+        'enroll' => 'enroll me',
+        'cabinet' => 'my account',
+        'instructor' => 'instructor',
+        'student' => 'student',
+
     ]
 
 ];

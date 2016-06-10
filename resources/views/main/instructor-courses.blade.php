@@ -6,18 +6,19 @@
 <div class="parallax overflow-hidden bg-blue-400 page-section third">
     <div class="container parallax-layer" data-opacity="true">
         <div class="media v-middle">
-            <div class="media-left text-center">
+            <div class="media-left text-center pull-left">
                 <a href="#">
                     <img src="images/people/110/guy-1.jpg" alt="people" class="img-circle width-80" />
                 </a>
             </div>
-            <div class="media-body">
-                <h1 class="text-white text-display-1 margin-v-0">John Doe</h1>
-                <p class="text-subhead"><a class="link-white text-underline" href="website-instructor-public-profile.html">View public profile</a></p>
+            <div class="media-body pull-left">
+                <h1 class="text-white text-display-1 margin-v-0">{{Session::get('user')->firstname}} {{Session::get('user')->firstname}}</h1>
+                <p class="text-subhead"><a class="link-white text-underline" href="website-instructor-public-profile.html">{{ trans('main.header.instructor_sub.profile') }}</a></p>
             </div>
-            <div class="media-right">
-                <span class="label bg-blue-500">Instructor</span>
+            <div class="media-right pull-right">
+                <span class="label bg-blue-500" style="margin-top: 40%;">{{ Session::get('user')->rep }}</span>
             </div>
+            <div class="clear"></div>
         </div>
     </div>
 </div>

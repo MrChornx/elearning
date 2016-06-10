@@ -94,7 +94,18 @@ main {
     background-color: #4CAF50;
     color: #fff;
 }
+.inline-input {
+    margin: 0 !important;
 
+}
+.inline-input > input {
+    height: 2.4rem;
+    margin-bottom: 0 !important;
+}
+
+.inline-input > label {
+    top: 0.4rem;
+}
 
 @media (max-width: 1450px) {
 

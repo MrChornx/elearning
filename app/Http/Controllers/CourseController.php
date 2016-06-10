@@ -16,6 +16,13 @@ use App\Http\Requests;
 
 class CourseController extends BaseController {
 
+	function __construct() {
+        if(Session::get('user')){
+            header('Location: '.url('/'));
+            die();
+        }
+    }
+
     public function switchCourse(Request $request) {
 
     	if($request->ajax()) {
