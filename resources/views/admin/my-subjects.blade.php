@@ -22,6 +22,9 @@
             <div class="card-head style-primary">
                 <header>ჩემი საგნები</header>
             </div>
+            <div class="message-styled" style="width: 500px; margin: 0 auto; margin-top:10px; font-size: 20px; color: green">
+                {{Session::get('msg-success')}}
+            </div>
             <div class="card-body floating-label">
                 <table cellpadding="20" border="black">
                     <thead>

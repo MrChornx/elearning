@@ -18,6 +18,7 @@
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/material-design-iconic-font.min.css?1421434286" />
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/libs/rickshaw/rickshaw.css?1422792967" />
     <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/libs/morris/morris.core.css?1420463396" />
+    <link type="text/css" rel="stylesheet" href="{{url('/')."/assets"}}/css/theme-default/libs/dropzone/dropzone-theme.css?1424887864" />
     <link href="{{url('/')."/css/style.css"}}" rel="stylesheet" type="text/css">
     <script src="{{url('/')."/assets"}}/js/libs/jquery/jquery-1.11.2.min.js"></script>
     <!-- END STYLESHEETS -->
@@ -202,6 +203,8 @@
 <script src="{{url('/')."/assets"}}/js/libs/select2/select2.min.js"></script>
 <script src="{{url('/')."/assets"}}/js/libs/multi-select/jquery.multi-select.js"></script>
 <script src="{{url('/')."/assets"}}/js/core/demo/DemoFormComponents.js"></script>
+<script src="{{url('/')."/assets"}}/js/libs/dropzone/dropzone.min.js"></script>
+
 
 <!-- END JAVASCRIPT -->
 </body>

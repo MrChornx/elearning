@@ -100,9 +100,6 @@ class Controller extends BaseController
 	}
 
 
-
-	
-
 	function showEditCourse() {
 		return view('main/edit-course');
 	}
@@ -126,10 +123,6 @@ class Controller extends BaseController
 	function showInstStatement() {
 		return view('main/instructor-statement');
 	}
-	
-
-
-
 
 
     function getRegister(){

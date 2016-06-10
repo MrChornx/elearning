@@ -54,7 +54,7 @@ Route::get('register', 'Controller@getRegister');
 Route::post('register', 'Controller@postRegister');
 
 
-
+Route::get('admin', 'AdminController@getDashboard');
 Route::get('admin/dashboard', 'AdminController@getDashboard');
 Route::post('admin/dashboard', 'Controller@postLogin');
 Route::get('admin/add-subject', 'AdminController@getAddSubject');
@@ -62,3 +62,5 @@ Route::post('admin/add-subject', 'AdminController@postAddSubject');
 Route::get('admin/my-subjects', 'AdminController@getMySubjects');
 Route::get('admin/edit-subject/{id}', 'AdminController@getEditSubject');
 Route::post('admin/edit-subject', 'AdminController@postEditSubject');
+Route::get('admin/add-theory/{id}', 'AdminController@getAddTheory');
+Route::post('admin/add-theory', 'AdminController@postAddTheory');

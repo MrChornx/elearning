@@ -1,0 +1,42 @@
+# Create schemas
+
+# Create tables
+CREATE TABLE IF NOT EXISTS users
+(
+    id INT NOT NULL,
+    username VARCHAR(255),
+    password VARCHAR(255),
+    firstname VARCHAR(255),
+    lastname VARCHAR(255),
+    status INT,
+    type INT,
+    email VARCHAR(255),
+    city VARCHAR(255),
+    country VARCHAR(255),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS courses
+(
+    id INT NOT NULL,
+    name VARCHAR(255),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS access
+(
+    id INT NOT NULL,
+    user_id INT,
+    course_id INT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS subjects
+(
+    id INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+
+# Create FKs
+
