@@ -69,7 +69,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand navbar-brand-primary navbar-brand-logo navbar-nav-padding-left">
-                        <a  href="app-student-dashboard.html">
+                        <a  href="{{url('/').'/directory'}}">
                         <span>E - </span>
                         <div class="svg">
                             <svg viewBox="0 0 106 64" height="100%" width="100%" preserveAspectRatio="xMidYMid meet">
@@ -142,8 +142,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                     <ul class="dropdown-menu">
                                         <li><a href="{{url('/').'/dashboard'}}">{{ trans('main.header.student_sub.dashboard') }}</a></li>
                                         <li><a href="{{url('/').'/my-courses'}}">{{ trans('main.header.student_sub.my courses') }}</a></li>
-                                        <li><a href="{{url('/').'/show-course'}}">{{ trans('main.header.student_sub.take course') }}</a></li>
-                                        <li><a href="{{url('/').'/course-forums'}}">{{ trans('main.header.student_sub.course forums') }}</a></li>
+                                        <!-- <li><a href="{{url('/').'/show-course'}}">{{ trans('main.header.student_sub.take course') }}</a></li>
+                                        <li><a href="{{url('/').'/course-forums'}}">{{ trans('main.header.student_sub.course forums') }}</a></li> -->
                                         <!-- <li><a href="app-take-quiz.html">Take Quiz</a></li> -->
                                         <li><a href="{{url('/').'/profile'}}">{{ trans('main.header.student_sub.profile') }}</a></li>
                                         <li><a href="{{url('/').'/my-messages'}}">{{ trans('main.header.student_sub.messages') }}</a></li>
@@ -153,9 +153,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 <li class="dropdown active">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.all.cabinet') }}  <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li class="active"><a href="app-instructor-dashboard.html">{{ trans('main.header.instructor_sub.dashboard') }}</a></li>
+                                        <li class="active"><a href="{{url('/').'/instructor-dashboard'}}">{{ trans('main.header.instructor_sub.dashboard') }}</a></li>
                                         <li><a href="{{url('/').'/instructor-courses'}}">{{ trans('main.header.instructor_sub.my courses') }}</a></li>
-                                        <li><a href="{{url('/').'/edit-course'}}">{{ trans('main.header.instructor_sub.edit course') }}</a></li>
                                         <li><a href="{{url('/').'/instructor-statement'}}">{{ trans('main.header.instructor_sub.statements') }}</a></li>
                                         <li><a href="{{url('/').'/instructor-profile'}}">{{ trans('main.header.instructor_sub.profile') }}</a></li>
                                         <li><a href="{{url('/').'/instructor-messages'}}">{{ trans('main.header.instructor_sub.messages') }}</a></li>
@@ -216,7 +215,11 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 <img src="{{url('/uploads/avatars/').'/'.Session::get('user')->avatar}}" alt="{{Session::get('user')->username}}" class="img-circle" width="40" /> {{Session::get('user')->username}} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="app-student-profile.html">{{ trans('main.header.account.account') }}</a></li>
+                                @if(Session::get('user')->type == 1)
+                                    <li><a href="{{url('/').'/profile'}}">{{ trans('main.header.student_sub.profile') }}</a></li>
+                                @elseif(Session::get('user')->type == 2)
+                                    <li><a href="{{url('/').'/instructor-profile'}}">{{ trans('main.header.instructor_sub.profile') }}</a></li>
+                                @endif
                                 <li><a href="{{ route('log.out') }}">{{ trans('main.header.account.logout') }}</a></li>
     
                             </ul>

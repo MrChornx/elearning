@@ -13,7 +13,7 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-	Route::get('/', 'Controller@showIndex');
+	Route::get('/', 'Controller@showDirectory');
 	Route::get('/dashboard', 'Controller@showDashboard');
 	Route::get('/profile', 'Controller@showProfile');
 	Route::get('/my-courses', 'Controller@myCourses');
@@ -34,6 +34,8 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 	Route::any('course-switch', ['as'=>'course.switch', 'uses'=>'CourseController@switchCourse']);
+	Route::any('enroll', ['as'=>'enroll.to', 'uses'=>'CourseController@enrollToCourse']);
+
 
 	Route::any('get-sign-up', ['as'=>'get.sign.up', 'uses'=>'AuthController@showSignUp']);
 
@@ -41,12 +43,15 @@ Route::group(['middleware' => ['web']], function () {
 	Route::any('post-sign-in', ['as'=>'post.sign.in', 'uses'=>'AuthController@login']);
 	Route::any('log-out', ['as'=>'log.out', 'uses'=>'AuthController@logout']);
 
-	Route::get('/edit-course', 'Controller@showEditCourse');
-	Route::get('/instructor-courses', 'Controller@showInstCourses');
-	Route::get('/instructor-profile', 'Controller@showInstProfile');
-	Route::get('/instructor-dashboard', 'Controller@showInstDashboard');
-	Route::get('/instructor-messages', 'Controller@showInstMessages');
-	Route::get('/instructor-statement', 'Controller@showInstStatement');
+
+	Route::any('edit-course/{course_id}', ['as'=>'edit.course', 'uses'=>'InstructorController@showEditCourse']);
+
+
+	Route::get('/instructor-courses', 'InstructorController@showInstCourses');
+	Route::get('/instructor-profile', 'InstructorController@showInstProfile');
+	Route::get('/instructor-dashboard', 'InstructorController@showInstDashboard');
+	Route::get('/instructor-messages', 'InstructorController@showInstMessages');
+	Route::get('/instructor-statement', 'InstructorController@showInstStatement');
 
 
 });

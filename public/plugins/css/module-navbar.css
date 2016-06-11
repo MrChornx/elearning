@@ -369,12 +369,14 @@
 }
 .navbar-brand.navbar-brand-primary,
 .navbar-brand.navbar-brand-primary:hover {
-  background: #42a5f5;
-  color: #fff;
+  background: #fff;
+  color: #42a5f5;
 }
 .navbar-brand.navbar-brand-primary a,
 .navbar-brand.navbar-brand-primary:hover a {
-  color: #fff;
+    color: #2196f3;
+    font-family: fantasy;
+    font-size: 27px;
 }
 .navbar-brand.navbar-brand-primary:after,
 .navbar-brand.navbar-brand-primary:hover:after {
@@ -385,7 +387,6 @@
   height: 1px;
   left: 0;
   right: 0;
-  background: #128ef2;
 }
 @media (min-width: 768px) {
   .navbar-toggle-demo > .container .navbar-brand,

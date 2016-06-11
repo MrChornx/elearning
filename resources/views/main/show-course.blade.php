@@ -19,19 +19,23 @@
             </div>
             <div class="media-right col-md-6 col-lg-4 col-sm-12 col-xs-12" style="margin:0; padding:0;">
                 @if(!$match)
-                    <div class="row" style="margin:10px 0 0;">
-                        <div class="col l7 m6 s12 pull-right" style="padding-right:0;">
-                            <a class="btn btn-primary btn-full waves-effect waves-light"  href="#">{{ trans('main.all.enroll') }}</a>
+                    <form id="enroll_to_course_form">
+                        <div class="row" style="margin:10px 0 0;">
+                            <div class="col l7 m6 s12 pull-right" style="padding-right:0;">
+                                <button class="btn btn-primary btn-full waves-effect waves-light" data-course-id="{{$course->id}}" type="submit" id="enroll_to_course_btn">{{ trans('main.all.enroll') }}</nutton>
+                                <input id="course_id" type="hidden" class="form-control" name="course_id" value="{{$course->id}}">
+
+                            </div>
+                            @if($course->password != null)
+                                <div class="input-field col l5 m6 s12 float-message inline-input" >
+                                    <i class="fa fa-lock prefix fa-1" aria-hidden="true"></i>
+                                    <input id="password" type="password" class="form-control" name="password">
+                                    <input id="lock_ind" type="hidden" class="form-control" name="lock_ind" value="1">
+                                    <label for="firstName">{{ trans('auth.register.password') }}</label>
+                                </div>
+                            @endif
                         </div>
-                    @if($course->password != null)
-                        <div class="input-field col l5 m6 s12 float-message inline-input" >
-                            <i class="fa fa-lock prefix fa-1" aria-hidden="true"></i>
-                            <input id="firstName" type="text" class="form-control" name="firstName">
-                            <label for="firstName">{{ trans('auth.register.password') }}</label>
-                        </div>
-                    @endif
-                        
-                    </div>
+                    </form>
                 @endif
             </div>
             <div class="clear"></div>
@@ -55,7 +59,7 @@
                     <p class="text-body-2">{{$course->description}}</p>
                 </div>
                 @if($match)
-                    <h5 class="text-subhead-2 text-light">Curriculum</h5>
+                    <!-- <h4 class="text-subhead-2 text-light">კურიკულუმი</h4> -->
                     <div class="panel panel-default curriculum open paper-shadow" data-z="0.5">
                         <div class="panel-heading panel-heading-gray" data-toggle="collapse" data-target="#curriculum-1">
                             <div class="media">
@@ -63,8 +67,8 @@
                                     <span class="icon-block img-circle bg-indigo-300 half text-white"><i class="fa fa-graduation-cap"></i></span>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-headline">Chapter 1</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cumque minima nemo repudiandae rerum! Aspernatur at, autem expedita id illum laudantium molestias officiis quaerat, rem sapiente sint totam velit. Enim.</p>
+                                    <h5 class="text-headline">სალექციო მასალები</h5>
+                                    
                                 </div>
                             </div>
                             <span class="collapse-status collapse-open">Open</span>
@@ -146,7 +150,7 @@
                                     <span class="icon-block half img-circle bg-orange-300 text-white"><i class="fa fa-graduation-cap"></i></span>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-headline">Chapter 2</h4>
+                                    <h5 class="text-headline">პრაქტკული მეცადინეობები</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cumque minima nemo repudiandae rerum! Aspernatur at, autem expedita id illum laudantium molestias officiis quaerat, rem sapiente sint totam velit. Enim.</p>
                                 </div>
                             </div>
@@ -229,7 +233,7 @@
                                     <span class="icon-block half img-circle bg-green-300 text-white"><i class="fa fa-graduation-cap"></i></span>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-headline">Chapter 3</h4>
+                                    <h5 class="text-headline">საგამოცდო საკითხები</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cumque minima nemo repudiandae rerum! Aspernatur at, autem expedita id illum laudantium molestias officiis quaerat, rem sapiente sint totam velit. Enim.</p>
                                 </div>
                             </div>
@@ -310,23 +314,23 @@
                 @endif
             </div>
             <div class="col-md-3">
+                
                 @if($match)
                     <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
                         <div class="panel-heading panel-collapse-trigger">
-                            <h4 class="panel-title">Resources</h4>
+                            <h4 class="panel-title">რესურსები</h4>
                         </div>
                         <div class="panel-body list-group">
                             <ul class="list-group list-group-menu">
-                                <li class="list-group-item active"><a class="link-text-color" href="website-take-course.html">Curriculum</a></li>
-                                <li class="list-group-item"><a class="link-text-color" href="website-course-forums.html">Course Forums</a></li>
-                                <li class="list-group-item"><a class="link-text-color" href="website-take-quiz.html">Take Quiz</a></li>
-                                <li class="list-group-item"><a class="link-text-color" href="website-quiz-results.html">Quiz Results</a></li>
+                                <li class="list-group-item active"><a class="link-text-color" href="">სასწავლო მასალა</a></li>
+                                <li class="list-group-item"><a class="link-text-color" href="#">ტესტები</a></li>
+
                             </ul>
                         </div>
                     </div>
                 @endif
                 @foreach ($course->users()->wherePivot('type', 1)->get() as $user)
-                <div class="panel panel-default" data-toggle="panel-collapse" data-open="false" style="margin-bottom:0;">
+                <div class="panel panel-default" data-toggle="panel-collapse" data-open="true" style="margin-bottom:0;">
                     
                         <div class="panel-heading panel-collapse-trigger">
                             <h4 class="panel-title">{{$user->firstname}} {{$user->lastname}}</h4>
@@ -352,8 +356,91 @@
                     
                 </div>
                 @endforeach
+
+                <hr>
+
+                <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+                    <div class="panel-heading panel-collapse-trigger">
+                        <h4 class="panel-title">{{ trans('main.all.users online') }}</h4>
+                    </div>
+                    <div class="panel-body list-group">
+                        <ul class="list-group">
+                            @foreach ($online_users as $user)
+                                <li class="list-group-item" data-course-id="{{ $course->id }}" style="background-color:transparent !important;">
+                                    <div class="media-name-wrapper">
+                                        <img src="{{url('/uploads/avatars/').'/'.$user->avatar}}" alt="People" class="img-circle width-30">
+                                        <a class="name-field-sm" href="#">{{ $user->firstname }} {{ $user->lastname }}</a>
+                                    </div>
+                                    
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+
+                
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var $timer;
+        $('#enroll_to_course_form').validate({
+            errorElement: 'div',
+            errorClass: 'invalid',
+            rules: {
+                @if($course->password != null)
+                    password: {
+                        required: true,
+                        /*equalTo: "#passwordConfirmation"*/
+                    }, 
+                @endif
+
+                course_id: {
+                    required: true,
+                },
+            },
+
+            messages: {
+                
+            },
+
+            submitHandler: function(form) {
+                $('#enroll_to_course_btn').button('loading');
+                var formData = $(form).serialize();
+                console.log(formData);
+                $.ajax({
+                    url: "{{ route('enroll.to') }}",
+                    type: "post",
+                    datatype: 'json',
+                    data: formData,
+                    error: function(a,b,c) {
+                        $('#enroll_to_course_btn').button('reset');
+                    },
+                    success: function(data){
+                        $('#enroll_to_course_btn').button('reset');
+                        if (data.success) {
+                            //$('#enroll_to_course_form').slideUp(200);
+                            Materialize.toast(data.message, 4000);
+                            clearTimeout($timer);
+                            var ms = 800; // milliseconds
+                            $timer = setTimeout(function() {
+                                location.reload();
+                            }, ms);
+
+                        } else {
+                            Materialize.toast(data.message, 4000);
+
+                            
+                            
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+    })
+</script>
 @stop

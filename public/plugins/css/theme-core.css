@@ -4119,7 +4119,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
-    margin-left: -20px;
+    
   }
 }
 .navbar-toggle {
@@ -6282,7 +6282,7 @@ button.close {
 }
 @media (max-width: 767px) {
   .visible-xs {
-    display: block !important;
+    
   }
   table.visible-xs {
     display: table;
@@ -8525,7 +8525,7 @@ body.survey .lock-container .panel .panel-footer .small {
   bottom: 0;
 }
 .navbar .navbar-brand-logo.navbar-brand-primary .svg {
-  fill: #ffffff;
+  fill: #42a5f5;
 }
 @media (min-width: 992px) {
   .navbar.navbar-size-large .navbar-brand-logo .svg {

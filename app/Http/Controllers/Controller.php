@@ -19,12 +19,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
-    function __construct() {
-        if(Session::get('user')){
-            header('Location: '.url('/'));
-            die();
-        }
-    }
+    // function __construct() {
+    //     if(Session::get('user')){
+    //         header('Location: '.url('/'));
+    //         die();
+    //     }
+    // }
 
     function showIndex(){
     	//App::setLocale('ge');
@@ -91,7 +91,8 @@ class Controller extends BaseController
 	function showDirectory() {
 
 		$courses = Course::all();
-		return view('main/directory', ['courses' => $courses]);
+		$online_users = User::where('online', '=', 1)->get();
+		return view('main/directory', ['courses' => $courses, 'online_users' => $online_users]);
 	}
 
 	function showShowCourse($id) {
@@ -99,6 +100,8 @@ class Controller extends BaseController
 		$course = Subject::find($id);
 		$user = Session::get('user');
 		$match = false;
+
+		$online_users = User::where('online', '=', 1)->get();
 
 		if ($user) {
 			$match_pivot = $course->users()->having('id','=',$user->id)->wherePivot('type', 2)->get();
@@ -109,7 +112,7 @@ class Controller extends BaseController
 
 
 	
-		return view('main/show-course', ['course' => $course, 'match' => $match]);
+		return view('main/show-course', ['course' => $course, 'match' => $match, 'online_users' => $online_users]);
 	}
 
 
@@ -123,29 +126,7 @@ class Controller extends BaseController
 	}
 */
 
-	function showEditCourse() {
-		return view('main/edit-course');
-	}
 
-	function showInstCourses() {
-		return view('main/instructor-courses');
-	}
-
-	function showInstProfile() {
-		return view('main/instructor-profile');
-	}
-
-	function showInstDashboard() {
-		return view('main/instructor-dashboard');
-	}
-
-	function showInstMessages() {
-		return view('main/instructor-messages');
-	}
-
-	function showInstStatement() {
-		return view('main/instructor-statement');
-	}
 
 
     function getRegister(){

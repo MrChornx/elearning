@@ -49,6 +49,8 @@ return [
         'cabinet' => 'my account',
         'instructor' => 'instructor',
         'student' => 'student',
+        'users online' => 'users online',
+        'edit course' => 'edit course',
 
     ]
 

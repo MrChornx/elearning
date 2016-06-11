@@ -49,6 +49,8 @@ return [
         'cabinet' => 'ჩემი კაბინეტი',
         'instructor' => 'ლექტორი',
         'student' => 'სტუდენტი',
+        'users online' => 'შემოსული მომხმარებლები',
+        'edit course' => 'რედაქტირება',
 
     ]
 
