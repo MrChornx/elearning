@@ -45,6 +45,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::any('edit-course/{course_id}', ['as'=>'edit.course', 'uses'=>'InstructorController@showEditCourse']);
+	Route::any('post-edit-course', ['as'=>'post.edit.course', 'uses'=>'InstructorController@postEditCourse']);
+	Route::any('post-inst-profile', ['as'=>'post.inst.profile', 'uses'=>'InstructorController@postInstProfile']);
+
 
 
 	Route::get('/instructor-courses', 'InstructorController@showInstCourses');

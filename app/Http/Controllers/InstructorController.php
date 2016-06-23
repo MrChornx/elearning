@@ -18,12 +18,12 @@ class InstructorController extends BaseController
 {
 
 	function __construct() {
-        if(!Session::get('user')){
+        if(!Session::get('user_id')){
              Redirect::to('/')->send();
         }
     }
     function showEditCourse($id) {
-		if ($user = Session::get('user')) {
+		if ($user = User::find(Session::get('user_id'))) {
 			if ($user->type >= 2) {
 				$course = Subject::find($id);
 				if ($course) {
@@ -38,15 +38,60 @@ class InstructorController extends BaseController
 		return Redirect::to('/');
 	}
 
+	function postEditCourse(Request $request) {
+		if($request->ajax()) {
+			$data = Input::all();
+			$course = Subject::find($data['course_id']);
+			$course->name = $data['name'];
+			$course->description = $data['description'];
+			if($course->save()) {
+				return response()->json(['success' => true]);
+			}
+
+			return response()->json(['success' => false]);
+
+		}
+	}
+
+	function postInstProfile(Request $request) {
+		if($request->ajax()) {
+			$data = Input::all();
+			
+			$user = User::find($data['user_id']);
+			$user->firstname = $data['firstname'];
+			$user->lastname = $data['lastname'];
+			$user->email = $data['email'];
+			if ($data['password'] && $data['password_re']) {
+				if ($data['password'] == $data['password_re']) {
+					$user->password = md5($data['password']);
+				}
+			}
+			if ($request->file('image')) {
+				$user->avatar = $request->file('image')->getClientOriginalName();
+				$request->file('image')->move(
+			        base_path() . '/public/uploads/avatars/', $user->avatar
+			    );
+			}
+			
+
+			if($user->save()) {
+				return response()->json(['success' => true]);
+			}
+
+			//return response()->json(['success' => false]);
+
+		}
+	}
+
 	function showInstCourses() {
-		$user = Session::get('user');
+		$user = User::find(Session::get('user_id'));
 		$online_users = User::where('online', '=', 1)->get();
 		$courses = $user->subjects()->wherePivot('type', 1)->get();
 		return view('main/instructor-courses', ['user' => $user, 'courses' => $courses, 'online_users' => $online_users]);
 	}
 
 	function showInstProfile() {
-		$user = Session::get('user');
+		$user = User::find(Session::get('user_id'));
 		$online_users = User::where('online', '=', 1)->get();
 		
 		return view('main/instructor-profile', ['user' => $user, 'online_users' => $online_users]);
@@ -54,7 +99,7 @@ class InstructorController extends BaseController
 	}
 
 	function showInstDashboard() {
-		$user = Session::get('user');
+		$user = User::find(Session::get('user_id'));
 		$online_users = User::where('online', '=', 1)->get();
 		$courses = $user->subjects()->wherePivot('type', 1)->get();
 
@@ -63,14 +108,14 @@ class InstructorController extends BaseController
 	}
 
 	function showInstMessages() {
-		$user = Session::get('user');
+		$user = User::find(Session::get('user_id'));
 		$online_users = User::where('online', '=', 1)->get();
 		return view('main/instructor-messages', ['user' => $user, 'online_users' => $online_users]);
 
 	}
 
 	function showInstStatement() {
-		$user = Session::get('user');
+		$user = User::find(Session::get('user_id'));
 		$online_users = User::where('online', '=', 1)->get();
 		return view('main/instructor-statement', ['user' => $user, 'online_users' => $online_users]);
 
