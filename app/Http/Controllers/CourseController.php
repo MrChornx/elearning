@@ -24,7 +24,7 @@ class CourseController extends BaseController {
     }*/
 
     public function enrollToCourse(Request $request) {
-    	if ($user = User::find(Session::get('user_id'))) {
+    	if ($user = Session::get('user')) {
     		if($request->ajax()) {
 		      	$data = Input::all();
 		      	$course = Subject::find($data['course_id']);
@@ -105,7 +105,7 @@ class CourseController extends BaseController {
 	                            </div>
 	                            <hr class="margin-none" />
 	                            <div class="panel-body">
-	                                <span class="inline-description-md">'.$subject->description.'</span>
+	                                <p class="inline-description-md">'.$subject->description.'</p>
 	                                <hr class="dashed-separator-1" />
 	                                <div class="media v-middle">
 

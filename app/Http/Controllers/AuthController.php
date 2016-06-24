@@ -45,7 +45,7 @@ class AuthController extends Controller
 	            if(trim($user->username) == trim($username)){
 	                //echo "here";
 	                if($user->password == md5(Input::get('password'))) {
-	                    Session::set('user_id', $user->id);
+	                    Session::set('user', $user);
 	                    $user->online = 1;
 	                    $user->save();
 	                } else $pass_stat = false;
@@ -64,8 +64,8 @@ class AuthController extends Controller
 		}
 	}
 	function logout() {
-		$user = User::find(Session::get('user_id'));
-		Session::forget('user_id');
+		$user = User::find(Session::get('user')->id);
+		Session::forget('user');
 		$user->online = 0;
 	    $user->save();
 		return Redirect::back();

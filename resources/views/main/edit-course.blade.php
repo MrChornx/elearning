@@ -3,21 +3,20 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<?php $auth_user = App\User::find(Session::get('user_id')); ?>
 <div class="parallax overflow-hidden bg-blue-400 page-section third">
     <div class="container parallax-layer" data-opacity="true">
         <div class="media v-middle">
             <div class="media-left text-center pull-left">
                 <a href="#">
-                    <img src="{{url('/uploads/avatars/').'/'.$auth_user->avatar}}" alt="people" class="img-circle width-80" />
+                    <img src="{{url('/uploads/avatars/').'/'.$user->avatar}}" alt="people" class="img-circle width-80" />
                 </a>
             </div>
             <div class="media-body pull-left">
-                <h1 class="text-white text-display-1 margin-v-0">{{$auth_user->firstname}} {{$auth_user->lastname}}</h1>
+                <h1 class="text-white text-display-1 margin-v-0">{{Session::get('user')->firstname}} {{Session::get('user')->firstname}}</h1>
                 <p class="text-subhead"><a class="link-white text-underline" href="{{url('/instructor-profile')}}">{{ trans('main.header.instructor_sub.profile') }}</a></p>
             </div>
             <div class="media-right pull-right">
-                <span class="label bg-blue-500" style="margin-top: 40%;">{{ $auth_user->rep }}</span>
+                <span class="label bg-blue-500" style="margin-top: 40%;">{{ Session::get('user')->rep }}</span>
             </div>
             <div class="clear"></div>
         </div>
@@ -41,29 +40,22 @@
                     <!-- Panes -->
                     <div class="tab-content">
                         <div id="course" class="tab-pane active">
-                            <form action="" id="edit-course-form">
+                            <form action="">
                                 <div class="form-group form-control-material">
                                     <label for="title">სათაური</label>
-                                    <input type="text" name="name" id="name" placeholder="" class="form-control used" value="{{$course->name}}" />
+                                    <input type="text" name="title" id="title" placeholder="Course Title" class="form-control used" value="Basics of HTML" />
                                     
                                 </div>
                                 <div class="form-group">
                                     <label for="description">აღწერა</label>
-                                    <textarea name="description" id="description" cols="30" rows="10" class="summernote">{!!html_entity_decode($course->description)!!}</textarea>
+                                    <textarea name="description" id="description" cols="30" rows="10" class="summernote">ისწავლე ბიჯოოოოო</textarea>
                                 </div>
-                                <input type="hidden" name="course_id" id="course_id"  value="{{$course->id}}" />
-                                <div class="row text-center">
-                                <div class="col l12 m12 s12">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light pull-right" id="course-main-sbm">შენახვა</button>
-                                </div>
-
-                            </div>
                             </form>
-
+                            <div class="text-right">
+                                <a href="#" class="btn btn-primary">შენახვა</a>
+                            </div>
                         </div>
                         <div id="content" class="tab-pane">
-
-                            
 
                             <div class="text-right">
                                 <a href="#" class="btn btn-primary">შენახვა</a>
@@ -128,48 +120,7 @@
                 $(this).closest('li').addClass('active');
             }
         })
-
-        var $timer;
-        $('#edit-course-form').validate({
-            errorElement: 'div',
-            errorClass: 'invalid',
-            rules: {
-                name: {
-                    required: true
-                },
-                description: {
-                    required: true,
-                    /*equalTo: "#passwordConfirmation"*/
-                },  
-            },
-
-            messages: {
-                
-            },
-
-            submitHandler: function(form) {
-                $('#course-main-sbm').button('loading');
-                var formData = $(form).serialize();
-                $.ajax({
-                    url: "{{ route('post.edit.course') }}",
-                    type: "post",
-                    datatype: 'json',
-                    data: formData + '&description='+ $("#description").code(),
-                    error: function(a,b,c) {
-                        $('#course-main-sbm').button('reset');
-                    },
-                    success: function(data){
-                        $('#course-main-sbm').button('reset');
-                        if (data.success) {
-                            Materialize.toast('ცვლილებები შენახულია', 4000);
-                        }                 
-                    }
-                });
-                return false;
-            }
-        });
-
-
-    });
+    })
+    
 </script>
 @stop

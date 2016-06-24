@@ -98,7 +98,7 @@ class Controller extends BaseController
 	function showShowCourse($id) {
 
 		$course = Subject::find($id);
-		$user = User::find(Session::get('user_id'));
+		$user = Session::get('user');
 		$match = false;
 
 		$online_users = User::where('online', '=', 1)->get();

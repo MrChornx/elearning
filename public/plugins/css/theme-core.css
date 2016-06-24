@@ -8441,7 +8441,7 @@ body.survey .lock-container .panel .panel-footer .small {
   color: #a8a8a8;
 }
 .curriculum .list-group .list-group-item:hover {
-  /*background: #fdfdfd;*/
+  background: #fdfdfd;
   border-color: #f5f5f5;
 }
 .curriculum .list-group .list-group-item.active {

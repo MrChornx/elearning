@@ -68,7 +68,7 @@ module.exports = (function () {
 
         if (typeof angular == 'undefined') {
             this.find('.list-group-item').on('click', function () {
-                //location.href = $(this).data('target');
+                location.href = $(this).data('target');
             });
         }
 

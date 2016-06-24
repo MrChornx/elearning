@@ -3,21 +3,20 @@
 @section('title', 'E-Learning')
 
 @section('content')
-<?php $auth_user = App\User::find(Session::get('user_id')); ?>
 <div class="parallax overflow-hidden bg-blue-400 page-section third">
     <div class="container parallax-layer" data-opacity="true">
         <div class="media v-middle">
             <div class="media-left text-center pull-left">
                 <a href="#">
-                    <img src="{{url('/uploads/avatars/').'/'.$auth_user->avatar}}" alt="people" class="img-circle width-80" />
+                    <img src="{{url('/uploads/avatars/').'/'.$user->avatar}}" alt="people" class="img-circle width-80" />
                 </a>
             </div>
             <div class="media-body pull-left">
-                <h1 class="text-white text-display-1 margin-v-0">{{$auth_user->firstname}} {{$auth_user->lastname}}</h1>
+                <h1 class="text-white text-display-1 margin-v-0">{{Session::get('user')->firstname}} {{Session::get('user')->firstname}}</h1>
                 <p class="text-subhead"><a class="link-white text-underline" href="{{url('/instructor-profile')}}">{{ trans('main.header.instructor_sub.profile') }}</a></p>
             </div>
             <div class="media-right pull-right">
-                <span class="label bg-blue-500" style="margin-top: 40%;">{{ $auth_user->rep }}</span>
+                <span class="label bg-blue-500" style="margin-top: 40%;">{{ Session::get('user')->rep }}</span>
             </div>
             <div class="clear"></div>
         </div>
@@ -38,20 +37,17 @@
                     <!-- Panes -->
                     <div class="tab-content">
                         <div id="account" class="tab-pane active">
-                            <form class="form-horizontal" id="profile-edit-form">
+                            <form class="form-horizontal">
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">პროფილის სურათი</label>
                                     <div class="col-md-6">
                                         <div class="media v-middle">
                                             <div class="media-left">
-                                                <div class="icon-block width-100 bg-grey-100" style="position:relative; border-radius:3px; overflow:hidden;">
+                                                <div class="icon-block width-100 bg-grey-100">
                                                     <i class="fa fa-photo text-light"></i>
-                                                    <img id="output" style="position:absolute; left:0; top:0;" width="100px" src="{{url('/uploads/avatars/').'/'.$user->avatar}}"/>
                                                 </div>
                                             </div>
                                             <div class="media-body">
-                                                <input type="file" accept="image/*" onchange="loadFile(event)" name="avatar" id="avatar">
-                                                
                                                 <a href="#" class="waves-effect btn-flat  btn-small"  data-animated> დაამატე<i class="fa fa-upl"></i></a>
                                             </div>
                                         </div>
@@ -63,26 +59,26 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-control-material">
-                                                    <label for="firstname">სახელი</label>
-                                                    <input type="text" class="form-control" id="firstname" placeholder="Your first name" name="firstname" value="{{$user->firstname}}">    
+                                                    <label for="exampleInputFirstName">სახელი</label>
+                                                    <input type="email" class="form-control" id="exampleInputFirstName" placeholder="Your first name">    
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-control-material">
-                                                    <label for="lastname">გვარი</label>
-                                                    <input type="text" class="form-control" id="lastname" placeholder="Your last name" name="lastname" value="{{$user->lastname}}">         
+                                                    <label for="exampleInputLastName">გვარი</label>
+                                                    <input type="email" class="form-control" id="exampleInputLastName" placeholder="Your last name">         
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email" class="col-md-2 control-label">ელ-ფოსტა</label>
+                                    <label for="inputEmail3" class="col-md-2 control-label">ელ-ფოსტა</label>
                                     <div class="col-md-6">
                                         <div class="form-control-material">
                                             <div class="input-group">
-                                                <!-- <label for="email">ელ-ფოსტა</label> -->
-                                                <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{$user->email}}">
+                                                <label for="inputEmail3">ელ-ფოსტა</label>
+                                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                                             </div>
                                         </div>
                                     </div>
@@ -92,8 +88,8 @@
                                     <div class="col-md-6">
                                         <div class="form-control-material">
                                             <div class="input-group">
-                                                <!-- <label for="website">ვებ გვერდი</label> -->
-                                                <input type="text" class="form-control used" id="website" value="" name="website">   
+                                                <label for="website">ვებ გვერდი</label>
+                                                <input type="text" class="form-control used" id="website" value="www.tsu.ge">   
                                             </div>
                                         </div>
                                     </div>
@@ -102,21 +98,8 @@
                                     <label for="inputPassword3" class="col-md-2 control-label">შეცვალე პაროლი</label>
                                     <div class="col-md-6">
                                         <div class="form-control-material">
-                                            <div class="input-group">
-                                                <!-- <label for="inputPassword3">ახალი პაროლი</label> -->
-                                                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword3" class="col-md-2 control-label"></label>
-                                    <div class="col-md-6">
-                                        <div class="form-control-material">
-                                            <div class="input-group">
-                                                <!-- <label for="inputPassword3">ახალი პაროლი</label> -->
-                                                <input type="password" class="form-control" id="password_re" placeholder="Repeat password" name="password_re">
-                                            </div>
+                                            <label for="inputPassword3">ახალი პაროლი</label>
+                                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                                         </div>
                                     </div>
                                 </div>
@@ -124,16 +107,15 @@
                                     <div class="col-md-offset-2 col-md-6">
                                         <div class="checkbox">
                                             <p class="">
-                                              <input type="checkbox" id="news_subscribe" name="news_subscribe" />
-                                              <label for="news_subscribe">გამოიწერე სიახლეები</label>
+                                              <input type="checkbox" id="checkbox3" name="news_subscribe" />
+                                              <label for="checkbox3">გამოიწერე სიახლეები</label>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="user_id" value="{{$user->id}}">
                                 <div class="form-group margin-none">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <button type="submit" class="btn btn-primary paper-shadow relative pull-right" data-z="0.5" data-hover-z="1" data-animated id="profile-edit-main-sbm">შეინახე</button>
+                                        <button type="submit" class="btn btn-primary paper-shadow relative pull-right" data-z="0.5" data-hover-z="1" data-animated>შეინახე</button>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -193,83 +175,6 @@
             }
         })
     })
-
-  var loadFile = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('output');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
-
-  var $timer;
-        $('#profile-edit-form').validate({
-            errorElement: 'div',
-            errorClass: 'invalid',
-            rules: {
-                avatar: {
-
-                },
-                firstname: {
-                    required: true,
-                    minlength: 2,
-                    maxlength: 50,
-                },
-                lastname: {
-                    required: true,
-                    minlength: 2,
-                    maxlength: 50,
-                },
-                email: {
-                    required: true,
-                    email: true,
-                },  
-                website: {
-                    minlength: 5,
-                    maxlength: 100,
-                },  
-                password: {
-                    minlength: 6,
-                    maxlength: 100,
-                }, 
-                password_re: {
-                    equalTo: "#password",
-                    minlength: 6,
-                    maxlength: 100,
-                }, 
-                news_subscribe: {
-
-                }
-            },
-
-            messages: {
-                
-            },
-
-            submitHandler: function(form) {
-                $('#profile-edit-main-sbm').button('loading');
-                var formData = new FormData(form);
-                formData.append('image', $('#avatar')[0].files[0]); 
-                $.ajax({
-                    url: "{{ route('post.inst.profile') }}",
-                    type: "post",
-                    contentType: false,
-                    processData: false,
-                    data: formData,
-                    error: function(a,b,c) {
-                        $('#profile-edit-main-sbm').button('reset');
-                    },
-                    success: function(data){
-                        $('#profile-edit-main-sbm').button('reset');
-                        if (data.success) {
-                            Materialize.toast('ცვლილებები შენახულია', 4000);
-                            window.location.reload();
-                        }                 
-                    }
-                });
-                return false;
-            }
-        });
+    
 </script>
 @stop
