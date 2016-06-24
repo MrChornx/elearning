@@ -17,15 +17,19 @@ use App\Http\Requests;
 class AuthController extends Controller
 {
     function showSignUp(Request $request) {
+		error_reporting(0);
+		set_error_handler(null);
+
 		if($request->ajax()) {
-			$returnHTML = view('main/sign-up')->with('userjobs', 'wut')->render();
+			$returnHTML = view('main/sign-up')->render();
 			return response()->json(['success' => true, 'html'=>$returnHTML]);
 		}
 	}
 
 	function showLogin(Request $request) {
+		error_reporting(0);
 		if($request->ajax()) {
-			$returnHTML = view('main/login')->with('userjobs', 'wut')->render();
+			$returnHTML = view('main/login')->render();
 			return response()->json(['success' => true, 'html'=>$returnHTML]);
 		}
 	}

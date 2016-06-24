@@ -22,7 +22,7 @@ class AdminController extends BaseController
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
     function __construct() {
-        if(Session::get('user')->type<2){
+        if(empty(Session::get('user')) || Session::get('user')->type<2){
             header('Location: '.url('login'));
             die();
         }
@@ -59,7 +59,7 @@ class AdminController extends BaseController
         $subject->name = $input['name'];
         $subject->password = $input['password'];
         $subject->save();
-        Subject::find($subject->id)->users()->attach($input['lecturers']);
+        Subject::find($subject->id)->users()->attach($input['lecturers'],['type' => 1]);
         Subject::find($subject->id)->courses()->attach($input['courses']);
         return Redirect::to(url('admin/my-subjects'))->with('msg-success', 'საგანი წარმატებით დაემატა');
     }
@@ -74,6 +74,7 @@ class AdminController extends BaseController
 
         $subjects = Subject::whereHas('users', function($q) use ($userId) {
             $q->where('user_id', $userId);
+            $q->where('lecturers_subjects.type', 2);
         })->get();
         //var_dump($subjects);
 
@@ -88,6 +89,10 @@ class AdminController extends BaseController
             ->with('subject',$subject)
             ->with('courses',$courses)
             ->with('users',$users);
+    }
+
+    function postEditSubject($id){
+
     }
 
     function getAddTheory($subject){

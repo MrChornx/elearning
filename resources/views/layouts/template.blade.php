@@ -128,8 +128,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.header.forum') }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{url('/').'/forum'}}">{{ trans('main.header.forum_sub.forum home') }}</a></li>
-                                <li><a href="{{url('/').'/forum-category'}}">{{ trans('main.header.forum_sub.forum category') }}</a></li>
+                                <li><a href="http://localhost/forum">{{ trans('main.header.forum_sub.forum home') }}</a></li>
+                                <li><a href="http://localhost/forum/index.php?/forum/2-%E1%83%97%E1%83%A1%E1%83%A3/">{{ trans('main.header.forum_sub.forum category') }}</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -230,9 +230,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         @else
                             <li class="inline-li">
                                 <ul class="" role="">
-                                    
-                                    <li><a href="app-student-billing.html" class="sign-in-btn"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ trans('main.header.account.login') }}</a></li>
-                                    <li><a href="app-student-profile.html" class="sign-up-btn"><i class="fa fa-user-plus" aria-hidden="true"></i> {{ trans('main.header.account.signup') }}</a></li>
+                                    <li><a href="login" class=""><i class="fa fa-sign-in" aria-hidden="true"></i> {{ trans('main.header.account.login') }}</a></li>
+                                    <li><a href="register" class=""><i class="fa fa-user-plus" aria-hidden="true"></i> {{ trans('main.header.account.signup') }}</a></li>
                                 </ul>
                             </li>
                         @endif
@@ -359,6 +358,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                  //   data: {'course_id' : $(this).data('course-id')},
                     success: function(data){
                         if (type == 0) {
+                            console.log(data);
                             $('.remodal').html('<button data-remodal-action="close" class="remodal-close"></button>');
                             $('.remodal').append(data.html);
                             var inst = $('.remodal').remodal();

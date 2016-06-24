@@ -47,7 +47,9 @@
                                 </td>
                                 <td>
                                     @foreach($subject->users as $lecturer)
+                                        @if($lecturer->pivot->type==2)
                                         ● {{$lecturer->firstname." ".$lecturer->lastname}}<br>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td>
