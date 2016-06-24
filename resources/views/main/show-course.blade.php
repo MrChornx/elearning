@@ -3,6 +3,8 @@
 @section('title', 'Dashboard')
 
 @section('content')
+
+<?php $auth_user = App\User::find(Session::get('user_id')); ?>
 <div class="parallax bg-white page-section third">
     <div class="container parallax-layer" data-opacity="true">
         <div class="media v-middle media-overflow-visible">
@@ -18,7 +20,7 @@
 
             </div>
             <div class="media-right col-md-6 col-lg-4 col-sm-12 col-xs-12" style="margin:0; padding:0;">
-                @if(!$match)
+                @if(!$match && $auth_user)
                     <form id="enroll_to_course_form">
                         <div class="row" style="margin:10px 0 0;">
                             <div class="col l7 m6 s12 pull-right" style="padding-right:0;">
@@ -56,7 +58,7 @@
                         </div>
                     </div>
                     <br/>
-                    <p class="text-body-2">{{$course->description}}</p>
+                    <p class="text-body-2">{!!html_entity_decode($course->description)!!}</p>
                 </div>
                 @if($match)
                     <!-- <h4 class="text-subhead-2 text-light">კურიკულუმი</h4> -->
@@ -75,72 +77,64 @@
                             <span class="collapse-status collapse-close">Close</span>
                         </div>
                         <div class="list-group collapse in" id="curriculum-1">
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">1.</div>
+                            @foreach($course->posts as $post)
+                                <div class="list-group-item media" data-id="{{$post->id}}">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="media-left">
+                                        <div class="text-crt">1.</div>
+                                        </div>
+                                        <div class="media-body">
+                                            <i class="fa fa-fw fa-circle text-grey-200"></i> {{$post->heading}}
+                                        </div>
+                                        <div class="media-right">
+                                            <div class=" text-right text-caption">{{$post->updated_at->diffForHumans()}}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="media-right col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        @foreach($post->files()->get() as $file) 
+                                            <?php   
+                                                $filename = explode('/', $file->location);
+                                                $fileext = explode('.', end($filename))[1];
+                                                switch ($fileext) {
+                                                    case 'docx':
+                                                        $fileext = 'word';
+                                                        break;
+                                                    case 'pdf':
+                                                        $fileext = 'pdf';
+                                                        break;
+                                                    case 'pxt':
+                                                        $fileext = 'excel';
+                                                        break;
+                                                    case 'aac':
+                                                        $fileext = 'audio';
+                                                        break;
+                                                    case 'mp4':
+                                                        $fileext = 'movie';
+                                                        break;
+                                                    case 'rar':
+                                                        $fileext = 'archive';
+                                                        break;
+                                                    case 'pptx':
+                                                        $fileext = 'powerpoint';
+                                                        break;
+                                                    case 'txt':
+                                                        $fileext = 'text';
+                                                        break;
+                                                    default:
+                                                        $fileext = 'code';
+                                                        break;
+                                                }
+                                            ?>
+                                            <span class="pull-right">
+                                                <a href="{{url('/').'/uploads/files/'.end($filename)}}"><i class="fa fa-file-{{$fileext}}-o"></i> {{end($filename)}}</a>
+                                            </span>
+                                        @endforeach
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="clear"></div>
                                 </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-green-300"></i> Installation
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">2:03 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media active" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">2.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-blue-300"></i> The MVC architectural pattern
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">25:01 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">3.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Database Models
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">12:10 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">4.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Database Access
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">1:25 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">5.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Eloquent Basics
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">22:30 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-quiz.html">
-                                <div class="media-left">
-                                    <div class="text-crt">6.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Take Quiz
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">10:00 min</div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="panel panel-default curriculum paper-shadow" data-z="0.5">
@@ -158,72 +152,20 @@
                             <span class="collapse-status collapse-close">Close</span>
                         </div>
                         <div class="list-group collapse" id="curriculum-2">
+
+                            @foreach($course->posts as $post)
                             <div class="list-group-item media" data-target="website-take-course.html">
                                 <div class="media-left">
                                     <div class="text-crt">1.</div>
                                 </div>
                                 <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Installation
+                                    <i class="fa fa-fw fa-circle text-grey-200"></i> {{$post->heading}}
                                 </div>
                                 <div class="media-right">
-                                    <div class="width-100 text-right text-caption">2:03 min</div>
+                                    <div class="text-right text-caption">{{$post->updated_at->diffForHumans()}}</div>
                                 </div>
                             </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">2.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> The MVC architectural pattern
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">25:01 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">3.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Database Models
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">12:10 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">4.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Database Access
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">1:25 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-course.html">
-                                <div class="media-left">
-                                    <div class="text-crt">5.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Eloquent Basics
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">22:30 min</div>
-                                </div>
-                            </div>
-                            <div class="list-group-item media" data-target="website-take-quiz.html">
-                                <div class="media-left">
-                                    <div class="text-crt">6.</div>
-                                </div>
-                                <div class="media-body">
-                                    <i class="fa fa-fw fa-circle text-grey-200"></i> Take Quiz
-                                </div>
-                                <div class="media-right">
-                                    <div class="width-100 text-right text-caption">10:00 min</div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="panel panel-default curriculum paper-shadow" data-z="0.5">

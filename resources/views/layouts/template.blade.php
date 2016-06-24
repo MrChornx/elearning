@@ -44,6 +44,7 @@ This variant is to be used when loading the separate styling modules -->
     <link href="{{url('/')."/bower_components/remodal/dist/remodal-default-theme.css"}}" rel="stylesheet" />
 
     <script src="{{url('/')."/js/jquery/jquery-2.2.4.min.js"}}"></script>
+    <script src="{{url('/')."/plugins/validator/dist/jquery.validate.js"}}"></script>
     <script src="{{url('/')."/bower_components/remodal/dist/remodal.min.js"}}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -55,6 +56,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 <![endif]-->
 </head>
 <body>
+
+    <?php $auth_user = App\User::find(Session::get('user_id')); ?>
  <!-- Wrapper required for sidebar transitions -->
     <div class="st-container">
         <!-- Fixed navbar -->
@@ -135,8 +138,8 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 <li><a href="{{url('/').'/directory'}}">{{ trans('main.header.courses_sub.courses grid') }}</a></li>
                             </ul>
                         </li>
-                        @if(Session::get('user'))
-                            @if(Session::get('user')->type == 1) 
+                        @if($auth_user)
+                            @if($auth_user->type == 1) 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.all.cabinet') }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
@@ -149,7 +152,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                         <li><a href="{{url('/').'/my-messages'}}">{{ trans('main.header.student_sub.messages') }}</a></li>
                                     </ul>
                                 </li>
-                            @elseif(Session::get('user')->type == 2)
+                            @elseif($auth_user->type == 2)
                                 <li class="dropdown active">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('main.all.cabinet') }}  <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
@@ -182,7 +185,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 @endforeach
                             </ul>
                         </li>
-                        @if(Session::get('user'))
+                        @if($auth_user)
                         <!-- notifications -->
                         <li class="dropdown notifications updates">
 
@@ -212,12 +215,12 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                         
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                                <img src="{{url('/uploads/avatars/').'/'.Session::get('user')->avatar}}" alt="{{Session::get('user')->username}}" class="img-circle" width="40" /> {{Session::get('user')->username}} <span class="caret"></span>
+                                <img src="{{url('/uploads/avatars/').'/'.$auth_user->avatar}}" alt="{{$auth_user->username}}" class="img-circle" width="40" /> {{$auth_user->username}} <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                @if(Session::get('user')->type == 1)
+                                @if($auth_user->type == 1)
                                     <li><a href="{{url('/').'/profile'}}">{{ trans('main.header.student_sub.profile') }}</a></li>
-                                @elseif(Session::get('user')->type == 2)
+                                @elseif($auth_user->type == 2)
                                     <li><a href="{{url('/').'/instructor-profile'}}">{{ trans('main.header.instructor_sub.profile') }}</a></li>
                                 @endif
                                 <li><a href="{{ route('log.out') }}">{{ trans('main.header.account.logout') }}</a></li>
@@ -249,7 +252,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
           <button data-remodal-action="close" class="remodal-close"></button>
           <h1>Remodal</h1>
           <p>
-            Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
+           
           </p>
           <br>
           <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
@@ -258,7 +261,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 
                 <!-- Footer -->
         <footer class="footer">
-            <strong>Learning</strong> v1.0.0 &copy; Copyright 2015
+            <strong>E-Learning</strong> v1.0.0 &copy; Copyright 2016
         </footer>
         <!-- // Footer -->
     </div>
@@ -331,7 +334,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     <script src="{{url('/')."/plugins/js/theme-core.js"}}"></script>
 
     <script src="{{url('/')."/js/materialize.min.js"}}"></script>
-    <script src="{{url('/')."/plugins/validator/dist/jquery.validate.js"}}"></script>
+    
 
     <script type="text/javascript">
         $.ajaxSetup({
